@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>/\ Кама ГЛ — Глемпинг у реки Кама</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/my-style-glemping.css' %}">
+    </head>
+
+    <body>
+
+        <div class="popup-container">
+            <form class="popup">
+                <input class="input-name" type="text" placeholder="Введите ваше имя">
+                <input class="input-email" type="email" placeholder="Введите E-Mail">
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+
+        <!-- ШАПКА — три колонки: лого | навигация | действия -->
+        <header>
+            <div class="fixed-container">
+
+                <!-- Иконка-логотип слева -->
+                <div class="header-logo">
+                    <img src="{% static 'img/icons-img/glamping.png' %}" alt="Кама ГЛ" class="logo-icon">
+                </div>
+
+                <!-- Ссылки по центру — равные отступы через gap -->
+                <nav class="header-links">
+                    <a href="#">О нас</a>
+                    <a href="#">Фото глемпинга</a>
+                    <a href="#">Удобства</a>
+                    <a href="#">Контакты</a>
+                </nav>
+
+                <!-- Телефон + кнопка справа -->
+                <div class="header-actions">
+                    <a href="tel:+79178521635" class="header-phone">+7 (917) 852-16-35</a>
+                    <button class="light-button open-popup">Забронировать</button>
+                </div>
+
+            </div>
+
+            <!-- Бургер-кнопка — только на мобильных -->
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- Мобильное меню -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#">О нас</a>
+                <a href="#">Фото глемпинга</a>
+                <a href="#">Удобства</a>
+                <a href="#">Контакты</a>
+                <a href="tel:+79178521635">+7 (917) 852-16-35</a>
+                <button class="light-button open-popup">Забронировать</button>
+            </div>
+        </header>
+
+        <!-- ===== ПЕРВЫЙ БЛОК (Hero) ===== -->
+        <section class="first-block">
+            <div class="hero-inner">
+
+                <!-- Локация -->
+                <p class="hero-location">Лаишево · Республика Татарстан</p>
+
+                <!-- Заголовок -->
+                <h1 class="hero-title">/\ Кама ГЛ</h1>
+
+                <!-- Слоган / краткая информация -->
+                <p class="hero-subtitle">
+                    Глемпинг у реки Кама — комфорт и природа<br>
+                    в 400 м от воды. Сезон: апрель — октябрь.
+                </p>
+
+                <!-- Мини-преимущества / теги -->
+                <div class="hero-tags">
+                    <span>📍 400 м до Камы</span>
+                    <span>🔥 Мангал и костёр</span>
+                    <span>📶 Wi-Fi 5G</span>
+                    <span>⭐ 4.0 · 3 отзыва</span>
+                    <span>🏕 До 4 гостей</span>
+                </div>
+
+                <!-- Информация о цене и условиях -->
+                <div class="hero-info">
+                    <span class="hero-price">7 190 ₽/сут</span>
+                    <span class="hero-hint">Залог 3 000 ₽ · Заезд с 14:00</span>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="second-section">
+            <div class="fixed-container">
+                <h2>Что вас ждёт</h2>
+                <div class="services">
+                    <div>
+                        <img src="{% static 'img/what-am-I-doing-img/free-icon-spellbook-233979.png' %}" alt="Природа">
+                        <p>400 м до реки Кама, 1000 м до леса и парка с соснами</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'img/what-am-I-doing-img/free-icon-cauldron-234001.png' %}" alt="Уют">
+                        <p>Уютная палатка с Wi-Fi, кинотеатром 3 м и всеми удобствами</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'img/what-am-I-doing-img/free-icon-owl-233992.png' %}" alt="Отдых">
+                        <p>Костровая зона, мангал, гамаки, велосипеды по запросу</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'img/what-am-I-doing-img/free-icon-magic-wand-233985.png' %}" alt="Сервис">
+                        <p>Постельное бельё, полотенца, средства гигиены включены</p>
+                    </div>
+                </div>
+                <button class="light-button open-popup">Узнать подробнее</button>
+            </div>
+        </section>
+
+        <section class="third-section">
+            <div class="fixed-container">
+                <h2>Наш глемпинг</h2>
+                <div class="work-examples">
+                    <div>
+                        <img src="{% static 'img/work-examples-img/ellow.png' %}" alt="Глемпинг снаружи">
+                        <p>Глемпинг снаружи</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'img/work-examples-img/blu.png' %}" alt="Интерьер">
+                        <p>Интерьер</p>
+                    </div>
+                    <div>
+                        <img src="{% static 'img/work-examples-img/pinc.png' %}" alt="Терраса">
+                        <p>Терраса с видом на Каму</p>
+                    </div>
+                </div>
+                <button class="light-button open-popup">Смотреть все фото</button>
+            </div>
+        </section>
+
+        <section class="price-info">
+            <div class="fixed-container">
+                <h2>
+                    Отдых у реки Кама с полным комфортом<br>
+                    от 7 190 ₽ за сутки на двоих.*
+                </h2>
+                <p>* Сезон: 15 апреля — 15 октября. Залог 3 000 ₽.
+                    До 4 гостей. Заезд с 14:00, выезд до 12:00.
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="fixed-container">
+                <div class="footer-links">
+                    <a href="#">О нас</a>
+                    <a href="#">Домики</a>
+                    <a href="#">Удобства</a>
+                    <a href="#">Контакты</a>
+                </div>
+                <div class="contacts">
+                    <span>glamping.kama@mail.ru</span>
+                    <span>+7 (917) 852-16-35</span>
+                </div>
+                <div class="action">
+                    <button class="light-button open-popup">Забронировать</button>
+                    <div class="icons">
+                        <img src="{% static 'img/icons-img/vk.png' %}" alt="ВКонтакте">
+                        <img src="{% static 'img/icons-img/telegram.png' %}" alt="Telegram">
+                        <img src="{% static 'img/icons-img/inst.png' %}" alt="Instagram">
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="{% static 'js/popup.js' %}"></script>
+        <script>
+            // Бургер-меню для мобильных
+            const burger = document.getElementById('burger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            burger.addEventListener('click', function () {
+                mobileMenu.classList.toggle('open');
+                burger.classList.toggle('active');
+            });
+        </script>
+    </body>
+</html>

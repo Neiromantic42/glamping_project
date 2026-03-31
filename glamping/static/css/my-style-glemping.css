@@ -1,0 +1,576 @@
+/* =========================================================
+   Сброс стилей и глобальные настройки
+   ========================================================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #faf8f7;
+    background-image: url('../img/background-img/glemping.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   ШАПКА — glassmorphism, фиксированная
+   ========================================================= */
+header {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    z-index: 1000;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Три колонки внутри шапки: лого | навигация | действия */
+header .fixed-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    height: 62px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Логотип --- */
+.header-logo {
+    flex-shrink: 0;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    display: block;
+}
+
+/* --- Навигация по центру — равные отступы через gap --- */
+.header-links {
+    display: flex;
+    gap: 40px;              /* одинаковое расстояние между всеми ссылками */
+    align-items: center;
+}
+
+.header-links a {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+    margin: 0;              /* сбрасываем margin из старых стилей */
+}
+
+.header-links a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* --- Телефон + кнопка справа --- */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.header-phone {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.header-phone:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Кнопка "Забронировать" в шапке */
+header .light-button {
+    background: rgba(255, 255, 255, 0.85);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+header .light-button:hover {
+    background: #fff;
+    transform: scale(1.04);
+}
+
+/* =========================================================
+   Бургер-кнопка — скрыта на десктопе
+   ========================================================= */
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+}
+.burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.active span:nth-child(2) { opacity: 0; }
+.burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* =========================================================
+   Мобильное меню — скрыто по умолчанию
+   ========================================================= */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 20px 16px;
+}
+.mobile-menu a,
+.mobile-menu button {
+    color: #fff;
+    font-size: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    text-decoration: none;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    text-align: left;
+    cursor: pointer;
+    font-weight: 500;
+}
+.mobile-menu button {
+    border-bottom: none;
+    margin-top: 8px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 10px 16px;
+    text-align: center;
+}
+.mobile-menu.open {
+    display: flex;
+}
+
+/* =========================================================
+   Ссылки по всему сайту
+   ========================================================= */
+.fixed-container {
+    max-width: 1200px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fixed-container h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+/* =========================================================
+   Секции
+   ========================================================= */
+section {
+    padding: 40px;
+}
+
+.second-section,
+.third-section {
+    margin-bottom: 60px;
+}
+
+/* =========================================================
+   ПЕРВЫЙ БЛОК (Hero) — та же ширина что шапка
+   ========================================================= */
+.first-block {
+    padding-top: 250px; /* отступ под фиксированную шапку */
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Контейнер Hero — ширина как шапка */
+.hero-inner {
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    padding: 44px 40px 36px;
+}
+
+/* Локация */
+.hero-location {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+/* Заголовок */
+.hero-title {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 14px;
+    line-height: 1.1;
+}
+
+/* Слоган */
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 17px;
+    line-height: 1.55;
+    margin: 0 0 28px;
+    max-width: 500px;
+}
+
+/* Теги-преимущества */
+.hero-tags {
+    display: flex;
+    flex-wrap: wrap;   /* переносятся на мобилке */
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.hero-tags span {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* CTA строка */
+.hero-cta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.hero-hint {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   Кнопки
+   ========================================================= */
+button {
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.light-button {
+    border: 1px solid black;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.dark-button {
+    background-color: #3d52fe;
+    border: 1px solid #3d52fe;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 20px;
+}
+
+/* =========================================================
+   Услуги
+   ========================================================= */
+.services {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.services > div {
+    width: 200px;
+    margin-right: 115px;
+}
+
+.services img {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.services p {
+    width: 250px;
+}
+
+/* =========================================================
+   Примеры работ
+   ========================================================= */
+.work-examples {
+    display: flex;
+    justify-content: flex-start;
+    gap: 200px;
+    margin-bottom: 30px;
+}
+
+.work-examples > div {
+    width: 200px;
+}
+
+.work-examples img {
+    width: 350px;
+}
+
+.work-examples p {
+    white-space: nowrap;
+}
+
+/* =========================================================
+   Цены
+   ========================================================= */
+.price-info {
+    background-color: #3d52fe;
+    color: #fff;
+    height: 350px;
+}
+
+.price-info h2 {
+    margin-bottom: 90px;
+    width: 50%;
+}
+
+.price-info p {
+    width: 50%;
+}
+
+/* =========================================================
+   Подвал
+   ========================================================= */
+footer .fixed-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 50px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.action button {
+    margin-bottom: 25px;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+footer img {
+    width: 17px;
+    height: 14px;
+}
+
+/* =========================================================
+   Попап
+   ========================================================= */
+.popup-container {
+    background-color: #000000e3;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.popup {
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-container button {
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    background-color: green;
+    border-radius: 10px;
+    border-color: white;
+}
+
+.popup input {
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    display: block;
+    margin-bottom: 40px;
+}
+
+/* =========================================================
+   МОБИЛЬНЫЙ АДАПТИВ (смартфоны до 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+
+    /* Шапка — скрываем nav и actions, показываем бургер */
+    header .fixed-container {
+        padding: 0 16px;
+        position: relative;
+    }
+
+    .header-links,
+    .header-actions {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    /* Секции — уменьшаем padding */
+    section {
+        padding: 20px 16px;
+    }
+
+    /* Hero */
+    .first-block {
+        height: auto;
+        min-height: 280px;
+        padding-top: 100px;
+    }
+
+    .first-block h1 {
+        font-size: 32px;
+    }
+
+    .first-block > div {
+        background-image: none; /* убираем картинку справа на мобилке */
+    }
+
+    /* Услуги — в колонку */
+    .services {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .services > div {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .services p {
+        width: 100%;
+    }
+
+    .services img {
+        width: 80px;
+    }
+
+    /* Примеры работ — в колонку */
+    .work-examples {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .work-examples > div {
+        width: 100%;
+    }
+
+    .work-examples img {
+        width: 100%;
+    }
+
+    /* Цены */
+    .price-info {
+        height: auto;
+        padding: 40px 16px;
+    }
+
+    .price-info h2,
+    .price-info p {
+        width: 100%;
+        font-size: 22px;
+    }
+
+    /* Заголовки */
+    .fixed-container h2 {
+        font-size: 26px;
+    }
+
+    /* Подвал — в колонку */
+    footer .fixed-container {
+        flex-direction: column;
+        gap: 28px;
+        padding: 30px 16px;
+    }
+}
