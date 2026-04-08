@@ -9,6 +9,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/my-style-glemping.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -41,7 +42,7 @@
                 <!-- Телефон + кнопка справа -->
                 <div class="header-actions">
                     <a href="tel:+79178521635" class="header-phone">+7 (917) 852-16-35</a>
-                    <button class="light-button open-popup">Забронировать</button>
+                    <button class="header-button open-popup">Забронировать</button>
                 </div>
 
             </div>
@@ -83,8 +84,9 @@
                     <span>📍 400 м до Камы</span>
                     <span>🔥 Мангал и костёр</span>
                     <span>📶 Wi-Fi 5G</span>
-                    <span>⭐ 4.0 · 3 отзыва</span>
+                    <span>⭐ 4.8 · 17 отзыва</span>
                     <span>🏕 До 4 гостей</span>
+                    <span>🎥 Видеонаблюдение</span> <!-- Добавили -->
                 </div>
 
                 <!-- Информация о цене и условиях -->
@@ -96,49 +98,74 @@
             </div>
         </section>
 
+        <!-- ===== ВТОРОЙ БЛОК (Hero) ===== -->
         <section class="second-section">
             <div class="fixed-container">
-                <h2>Что вас ждёт</h2>
+                <h2>Ваш идеальный отдых на природе</h2>
                 <div class="services">
                     <div>
-                        <img src="{% static 'img/what-am-I-doing-img/free-icon-spellbook-233979.png' %}" alt="Природа">
+                        <a href="{% static 'img/what-am-I-doing-img/before_glamping_night.jpg' %}" data-lightbox="services" data-title="400 м до реки Кама, 1000 м до леса и парка с соснами">
+                            <img src="{% static 'img/what-am-I-doing-img/before_glamping_night.jpg' %}" alt="Природа">
+                        </a>
                         <p>400 м до реки Кама, 1000 м до леса и парка с соснами</p>
                     </div>
                     <div>
-                        <img src="{% static 'img/what-am-I-doing-img/free-icon-cauldron-234001.png' %}" alt="Уют">
-                        <p>Уютная палатка с Wi-Fi, кинотеатром 3 м и всеми удобствами</p>
+                        <a href="{% static 'img/what-am-I-doing-img/kinoteatr.jpg' %}" data-lightbox="services" data-title="Уютная палатка с Wi-Fi, кинотеатром 3 м и всеми удобствами">
+                            <img src="{% static 'img/what-am-I-doing-img/kinoteatr.jpg' %}" alt="Кинотеатр">
+                        </a>
+                        <p>Уютная палатка с Wi-Fi, кинотеатром и всеми удобствами</p>
                     </div>
                     <div>
-                        <img src="{% static 'img/what-am-I-doing-img/free-icon-owl-233992.png' %}" alt="Отдых">
+                        <a href="{% static 'img/what-am-I-doing-img/glemping_nigt.jpg' %}" data-lightbox="services" data-title="Костровая зона, мангал, гамаки, велосипеды по запросу">
+                            <img src="{% static 'img/what-am-I-doing-img/glemping_nigt.jpg' %}" alt="Отдых">
+                        </a>
                         <p>Костровая зона, мангал, гамаки, велосипеды по запросу</p>
                     </div>
                     <div>
-                        <img src="{% static 'img/what-am-I-doing-img/free-icon-magic-wand-233985.png' %}" alt="Сервис">
+                        <a href="{% static 'img/what-am-I-doing-img/bed.jpg' %}" data-lightbox="services" data-title="Постельное бельё, полотенца, средства гигиены включены">
+                            <img src="{% static 'img/what-am-I-doing-img/bed.jpg' %}" alt="Сервис">
+                        </a>
                         <p>Постельное бельё, полотенца, средства гигиены включены</p>
                     </div>
                 </div>
-                <button class="light-button open-popup">Узнать подробнее</button>
+                <button class="second-section-button open-popup">Узнать подробнее</button>
             </div>
         </section>
 
+        <!-- ===== ТРЕТИЙ БЛОК (Удобства) ===== -->
         <section class="third-section">
             <div class="fixed-container">
-                <h2>Наш глемпинг</h2>
-                <div class="work-examples">
+                <h2>Удобства</h2>
+                <div class="services">
                     <div>
-                        <img src="{% static 'img/work-examples-img/ellow.png' %}" alt="Глемпинг снаружи">
-                        <p>Глемпинг снаружи</p>
+                        <a href="{% static 'img/work-examples-img/restroom_mirror.jpeg' %}" data-lightbox="amenities" data-title="Уборная с душем 🛁">
+                            <img src="{% static 'img/work-examples-img/restroom_mirror.jpeg' %}" alt="Душ">
+                        </a>
+                        <p>Уборная и душ 🛁
+                            Авторский дизайн и ручная отделка.
+                            Полноценный душ, стиль в каждой детали и полный комфорт — всё продумано до мелочей.
+                        </p>
                     </div>
                     <div>
-                        <img src="{% static 'img/work-examples-img/blu.png' %}" alt="Интерьер">
-                        <p>Интерьер</p>
+                        <a href="{% static 'img/work-examples-img/kitchen_area.jpeg' %}" data-lightbox="amenities" data-title="Кухонная зона с холодильником, плитой и посудой 🍳">
+                            <img src="{% static 'img/work-examples-img/kitchen_area.jpeg' %}" alt="Кухня">
+                        </a>
+                        <p>Кухонная зона. Холодильник, плита, микроволновка, посуда на 4 человека 🍳</p>
                     </div>
                     <div>
-                        <img src="{% static 'img/work-examples-img/pinc.png' %}" alt="Терраса">
-                        <p>Терраса с видом на Каму</p>
+                        <a href="{% static 'img/work-examples-img/terasa.jpeg' %}" data-lightbox="amenities" data-title="Терраса с креслами, столиком и гамаками">
+                            <img src="{% static 'img/work-examples-img/terasa.jpeg' %}" alt="Терраса">
+                        </a>
+                        <p>Терраса с видом на Камское Море. Кресла и столик на террасе, гамаки во дворе🌊</p>
+                    </div>
+                    <div>
+                        <a href="{% static 'img/work-examples-img/leisure_zone.jpeg' %}" data-lightbox="amenities" data-title="зона досуга 🎬">
+                            <img src="{% static 'img/work-examples-img/leisure_zone.jpeg' %}" alt="Зона досуга">
+                        </a>
+                        <p>Зона досуга. Настольные игры 🎲, мини-библиотека</p>
                     </div>
                 </div>
-                <button class="light-button open-popup">Смотреть все фото</button>
+                <button class="third-section-button open-popup">Смотреть все фото</button>
             </div>
         </section>
 
@@ -176,6 +203,13 @@
                 </div>
             </div>
         </footer>
+
+        <!-- 1. jQuery (обязательно для Lightbox!) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Подключение Lightbox JS -->
+        <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+
 
         <script src="{% static 'js/popup.js' %}"></script>
         <script>

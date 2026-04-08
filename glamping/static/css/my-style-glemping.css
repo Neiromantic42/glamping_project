@@ -71,18 +71,18 @@ header .fixed-container {
 /* --- Навигация по центру — равные отступы через gap --- */
 .header-links {
     display: flex;
-    gap: 40px;              /* одинаковое расстояние между всеми ссылками */
+    gap: 40px;
     align-items: center;
 }
 
 .header-links a {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
     transition: color 0.2s ease;
-    margin: 0;              /* сбрасываем margin из старых стилей */
+    margin: 0;
 }
 
 .header-links a:hover {
@@ -100,7 +100,7 @@ header .fixed-container {
 
 .header-phone {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 13px;
+    font-size: 18px;
     text-decoration: none;
     white-space: nowrap;
 }
@@ -109,22 +109,27 @@ header .fixed-container {
     text-decoration: none;
 }
 
-/* Кнопка "Забронировать" в шапке */
-header .light-button {
-    background: rgba(255, 255, 255, 0.85);
-    color: #1a1a1a;
-    border: none;
-    border-radius: 10px;
-    padding: 8px 18px;
-    font-size: 13px;
+/* Общий стиль для всех кнопок light-button */
+.header-button{
+    display: inline-block;       /* чтобы margin-auto и размеры работали */
+    padding: 12px 28px;          /* отступы внутри кнопки */
+    border-radius: 30px;         /* скругление */
     font-weight: 600;
+    font-size: 18px;
+    border: none;
     cursor: pointer;
     white-space: nowrap;
-    transition: background 0.2s ease, transform 0.15s ease;
+    transition: all 0.3s ease;  /* плавная анимация */
+    background: linear-gradient(90deg, #ff8c00, #ffa500); /* основной цвет */
+    color: #fff;                 /* текст */
+    text-align: center;
 }
-header .light-button:hover {
-    background: #fff;
-    transform: scale(1.04);
+
+/* Ховер-эффект для всех light-button */
+.header-button:hover {
+    transform: scale(1.05);       /* немного увеличиваем */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* тень */
+    background: linear-gradient(90deg, #ffa500, #ff8c00); /* плавный градиент на ховер */
 }
 
 /* =========================================================
@@ -202,11 +207,6 @@ header .light-button:hover {
     margin-right: auto;
 }
 
-.fixed-container h2 {
-    font-size: 40px;
-    margin-bottom: 40px;
-}
-
 /* =========================================================
    Секции
    ========================================================= */
@@ -214,22 +214,20 @@ section {
     padding: 40px;
 }
 
-.second-section,
-.third-section {
+.second-section {
     margin-bottom: 60px;
 }
 
 /* =========================================================
-   ПЕРВЫЙ БЛОК (Hero) — та же ширина что шапка
+   ПЕРВЫЙ БЛОК (Hero)
    ========================================================= */
 .first-block {
-    padding-top: 250px; /* отступ под фиксированную шапку */
-    padding-bottom: 40px;
+    padding-top: 250px;
+    padding-bottom: 130px;
     display: flex;
     justify-content: center;
 }
 
-/* Контейнер Hero — ширина как шапка */
 .hero-inner {
     width: calc(100% - 40px);
     max-width: 1200px;
@@ -242,16 +240,14 @@ section {
     padding: 44px 40px 36px;
 }
 
-/* Локация */
 .hero-location {
     color: rgba(255, 255, 255, 0.65);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 3px;
     text-transform: uppercase;
     margin: 0 0 10px;
 }
 
-/* Заголовок */
 .hero-title {
     color: #fff;
     font-size: 48px;
@@ -260,7 +256,6 @@ section {
     line-height: 1.1;
 }
 
-/* Слоган */
 .hero-subtitle {
     color: rgba(255, 255, 255, 0.82);
     font-size: 17px;
@@ -269,11 +264,10 @@ section {
     max-width: 500px;
 }
 
-/* Теги-преимущества */
 .hero-tags {
     display: flex;
-    flex-wrap: wrap;   /* переносятся на мобилке */
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 20px;
     margin-bottom: 32px;
 }
 
@@ -285,23 +279,22 @@ section {
     color: #fff;
     border-radius: 20px;
     padding: 6px 14px;
-    font-size: 13px;
+    font-size: 16px;
     white-space: nowrap;
 }
 
-/* CTA строка */
-.hero-cta {
+.hero-info {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 100px;
 }
 
-.hero-hint {
+.hero-hint,
+.hero-price {
     color: rgba(255, 255, 255, 0.55);
-    font-size: 13px;
+    font-size: 20px;
 }
-
 
 /* =========================================================
    Кнопки
@@ -325,51 +318,158 @@ button {
     color: #fff;
     margin-top: 20px;
 }
+/* =========================================================
+   Кнопки второго блока
+   ========================================================= */
+.second-section-button {
+    background: linear-gradient(90deg, #ff8c00, #ffa500); /* Создаём градиент фона слева направо от оранжевого к светло-оранжевому */
+    color: #fff; /* Цвет текста белый */
+    padding: 12px 28px; /* Внутренние отступы: 12px сверху/снизу, 28px слева/справа */
+    border-radius: 30px; /* Скругляем углы кнопки, чтобы она была округлой */
+    font-weight: 600; /* Жирность текста — полужирный */
+    font-size: 18px; /* Размер шрифта текста кнопки */
+    border: none; /* Убираем стандартную границу браузера */
+    cursor: pointer; /* Курсор меняется на «руку» при наведении, что показывает кликабельность */
+    transition: all 0.3s ease;  /* Плавный переход всех свойств (hover/active) за 0.3 секунды с плавной кривой ease */
+    margin-left: 45px;
+}
+
+.second-section-button:hover {
+    transform: scale(1.05);  /* При наведении кнопка слегка увеличивается (5%) */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Добавляем тень, чтобы кнопка «поднималась» визуально */
+}
+
 
 /* =========================================================
-   Услуги
+   ВТОРОЙ БЛОК ( Сервисы) - Адаптивная версия
    ========================================================= */
+.second-section {
+    margin-bottom: 60px;
+}
+
+.second-section .fixed-container {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 20px;             /* немного уменьшили для маленьких экранов */
+    width: 90%;                /* резиновая ширина */
+    max-width: 1200px;         /* ограничение на больших экранах */
+    margin: 0 auto;            /* центрирование */
+    box-sizing: border-box;    /* чтобы padding не ломал ширину */
+}
+
+.fixed-container h2 {
+    text-align: left;                 /* центрируем текст */
+    background: rgba(255,255,255,0.15); /* полупрозрачный фон */
+    padding: 10px 20px;                 /* внутренние отступы сверху/снизу и слева/справа */
+    border-radius: 15px;                /* скругляем углы */
+    display: inline-block;              /* чтобы фон обтекал только текст, а не всю строку */
+    font-size: clamp(24px, 4vw, 40px);  /* адаптивный размер заголовка */
+    color: #fff;                        /* белый текст */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.25); /* тень для читаемости */
+    margin-left: 45px;                /* отступ снизу от блока сервисов */
+}
+
 .services {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;           /* блоки переносятся на новую строку на узких экранах */
+    justify-content: center;   /* центрирование при переносе */
+    gap: 20px;                 /* отступы между блоками гибкие */
     margin-bottom: 30px;
 }
 
 .services > div {
-    width: 200px;
-    margin-right: 115px;
+    flex: 1 1 200px;           /* гибкая ширина: min 200px, растет по мере возможности */
+    max-width: 250px;          /* ограничение по ширине блока */
+    box-sizing: border-box;
+    text-align: center;        /* текст по центру блока */
 }
 
 .services img {
-    width: 150px;
+    width: 100%;               /* картинка занимает всю ширину блока */
+    height: 160px;             /* фиксированная высота */
+    object-fit: cover;         /* обрезает лишнее, чтобы все картинки одинаково выглядели */
     margin-bottom: 15px;
+    border-radius: 20px;
 }
 
 .services p {
-    width: 250px;
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 16px;
+
+    font-weight: 600; /* делает текст чуть жирнее */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* лёгкая тень для контраста */
+    line-height: 1.4; /* чуть больше межстрочного интервала, читаемость */
 }
 
 /* =========================================================
-   Примеры работ
+   ТРЕТИЙ БЛОК (Удобства / Hero)
    ========================================================= */
-.work-examples {
-    display: flex;
-    justify-content: flex-start;
-    gap: 200px;
-    margin-bottom: 30px;
+.third-section {
+    margin-bottom: 60px;
 }
 
-.work-examples > div {
-    width: 200px;
+.third-section .fixed-container {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-.work-examples img {
-    width: 350px;
+.third-section h2 {
+    text-align: left;
+    background: rgba(255,255,255,0.15);
+    padding: 10px 20px;
+    border-radius: 15px;
+    display: inline-block;
+    font-size: clamp(24px, 4vw, 40px);
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.25);
+    margin-left: 45px;
 }
 
-.work-examples p {
-    white-space: nowrap;
+.third-section .services div img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
 }
+
+
+/* Кнопка третьего блока */
+.third-section-button {
+    display: block;          /* Чтобы margin-auto сработал */
+    margin: 0 auto;          /* Центрируем кнопку по горизонтали */
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg, #ff8c00, #ffa500);
+    color: #fff;
+    transition: all 0.3s ease;
+    margin-left: 45px;
+}
+
+.third-section-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
 
 /* =========================================================
    Цены
@@ -482,9 +582,8 @@ footer img {
    ========================================================= */
 @media (max-width: 768px) {
 
-    /* Шапка — скрываем nav и actions, показываем бургер */
     header .fixed-container {
-        padding: 0 16px;
+        padding: 0 30px;
         position: relative;
     }
 
@@ -497,12 +596,11 @@ footer img {
         display: flex;
     }
 
-    /* Секции — уменьшаем padding */
     section {
-        padding: 20px 16px;
+        width: 100%;
+        padding: 20px 0;
     }
 
-    /* Hero */
     .first-block {
         height: auto;
         min-height: 280px;
@@ -514,27 +612,53 @@ footer img {
     }
 
     .first-block > div {
-        background-image: none; /* убираем картинку справа на мобилке */
+        background-image: none;
     }
 
-    /* Услуги — в колонку */
-    .services {
-        flex-direction: column;
-        gap: 24px;
-    }
 
+
+
+/* =========================================================
+   МОБИЛЬНЫЙ АДАПТИВ ВТОРОГО БЛОКА
+   ========================================================= */
+
+/* Настройка заголовка второго блока */
+@media  (max-width: 768px) {
+    .second-section .fixed-container h2 {
+        margin-top: 0; /* Расстояние от предыдущего блока минимальное, можно чуть увеличить, если нужно больше воздуха */
+        margin-bottom: 50px; /* Расстояние до первой картинки блока — заголовок «дышит» */
+        margin-left: 0; /* Убираем левый отступ для мобильной версии, чтобы центрирование было корректным */
+        text-align: center; /* Центрируем заголовок по ширине экрана */
+        padding: 10px 16px; /* Внутренние отступы вокруг текста, чтобы фон стекла не прилегал к краям */
+        font-size: clamp(22px, 6vw, 32px); /* Адаптивный размер: минимум 22px, максимум 32px, растет относительно ширины экрана */
+        display: block; /* Чтобы элемент занимал всю доступную ширину и центрирование работало */
+    }
+}
+
+/* Настройка изображений второго блока */
+@media (max-width: 768px) {
     .services > div {
-        width: 100%;
-        margin-right: 0;
+        width: 100%; /* Блоки сервисов занимают всю ширину контейнера на мобильных */
+        margin: 0 auto; /* Центрируем блоки горизонтально */
+        text-align: center; /* Внутренний текст (если есть) тоже центрируем */
+    }
+
+    .second-section .services img {
+        width: 100%; /* Изображение занимает всю ширину блока */
+        height: auto; /* Высота пропорциональна ширине */
+        margin-bottom: 15px; /* Отступ снизу между картинкой и текстом */
+        border-radius: 20px; /* Скругление углов сохраняем */
+        object-fit: cover; /* Изображение обрезается по размеру блока, чтобы не искажалось */
     }
 
     .services p {
-        width: 100%;
+        margin-top: -10px; /* Сдвигаем текст чуть выше, ближе к картинке */
+        padding: 6px 12px; /* Внутренние отступы для стеклянного фона */
+        font-size: 15px; /* Мелкий шрифт для мобильных устройств */
+        margin-bottom: 20px; /* Отступ после текста для разделения блоков */
     }
+}
 
-    .services img {
-        width: 80px;
-    }
 
     /* Примеры работ — в колонку */
     .work-examples {
@@ -562,12 +686,7 @@ footer img {
         font-size: 22px;
     }
 
-    /* Заголовки */
-    .fixed-container h2 {
-        font-size: 26px;
-    }
 
-    /* Подвал — в колонку */
     footer .fixed-container {
         flex-direction: column;
         gap: 28px;
