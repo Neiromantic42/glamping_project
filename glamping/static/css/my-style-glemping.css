@@ -888,8 +888,8 @@ button {
 }
 
 .icons img {
-    width: 40px;   /* размер иконки */
-    height: 40px;  /* фиксируем высоту */
+    width: 50px;   /* размер иконки */
+    height: 50px;  /* фиксируем высоту */
     cursor: pointer; /* курсор "рука" */
     opacity: 0.85;   /* слегка приглушаем */
     transition: 0.2s; /* плавная анимация при hover */
