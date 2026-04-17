@@ -5,7 +5,7 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #faf8f7;
-    background-image: url('../img/background-img/glemping.jpg');
+    background-image: url('../img/background-img/glemp_bez_lestnici.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -331,7 +331,7 @@ button {
     border: none; /* Убираем стандартную границу браузера */
     cursor: pointer; /* Курсор меняется на «руку» при наведении, что показывает кликабельность */
     transition: all 0.3s ease;  /* Плавный переход всех свойств (hover/active) за 0.3 секунды с плавной кривой ease */
-    margin-left: 45px;
+    margin-left: 45px; /* Зачем то сместил кнопку вправо на мобилке выглядит криво  */
 }
 
 .second-section-button:hover {
@@ -410,6 +410,18 @@ button {
 }
 
 /* =========================================================
+   Второй блок мобильный адаптив
+   ========================================================= */
+@media (max-width: 768px) {
+    .second-section-button {
+        margin-left: 0; /* убираем старый сдвиг */
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+    }
+}
+
+/* =========================================================
    ТРЕТИЙ БЛОК (Удобства / Hero)
    ========================================================= */
 .third-section {
@@ -470,68 +482,448 @@ button {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
+/* =========================================================
+   МОБИЛЬНЫЙ АДАПТИВ ТРЕТЬЕГО БЛОКА class="third-section"
+   ========================================================= */
+@media (max-width: 768px) {
+
+    /* ===== 3 БЛОК КОНТЕЙНЕР ===== */
+    .third-section .fixed-container {
+        padding: 20px 16px;   /* делаем как у всех блоков */
+    }
+
+    /* ===== ЗАГОЛОВОК ===== */
+    .third-section h2 {
+        margin-left: 0;       /* убираем смещение */
+        text-align: center;   /* центрируем */
+        display: block;
+        margin-bottom: 40px;
+        font-size: clamp(22px, 6vw, 32px);
+        margin-top: 0px;
+    }
+
+    /* ===== КАРТОЧКИ ===== */
+    .third-section .services {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* ===== КАРТОЧКА ===== */
+    .third-section .services > div {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* ===== КАРТИНКИ ===== */
+    .third-section .services img {
+        width: 100%;
+        height: 220px;   /* 👈 важно: уменьшаем с 450px */
+        object-fit: cover;
+        border-radius: 16px;
+        margin-bottom: 5px;
+    }
+
+    /* ===== ТЕКСТ ===== */
+    .third-section .services p {
+        font-size: 15px;
+        margin-top: 1px;
+    }
+
+    /* ===== КНОПКА ===== */
+    .third-section-button {
+        margin: 20px auto 0;
+        display: block;
+    }
+}
+
 
 /* =========================================================
-   Цены
+   ЧЕТВЕРНЫЙ БЛОК (price-info) ЦЕНЫ
    ========================================================= */
+
 .price-info {
-    background-color: #3d52fe;
+    /* Создает плавный переход цвета под углом 135 градусов от синего к светло-синему */
+    background: linear-gradient(135deg, #3d52fe, #5b6cff);
+    /* Устанавливает белый цвет текста для хорошего контраста с темным фоном */
     color: #fff;
-    height: 350px;
+    /* Внутренние отступы: 80px сверху/снизу (делает блок высоким) и 20px по бокам */
+    padding: 80px 20px;
+    /* Внешний отступ снизу: отодвигает следующий контент на 60px, чтобы не прилипал */
+    margin-bottom: 60px;
+}
+
+.price-info .fixed-container {
+    /* Ограничивает ширину блока, чтобы контент не растягивался на весь экран */
+    max-width: 1200px;
+    /* Центрирует блок по горизонтали внутри родителя */
+    margin: 0 auto;
+    /* Полупрозрачный белый фон (всего 8% непрозрачности) */
+    background: rgba(255, 255, 255, 0.08);
+    /* Размывает то, что находится ПОД блоком (эффект матового стекла) */
+    backdrop-filter: blur(10px);
+    /* Поддержка размытия фона для браузеров Safari */
+    -webkit-backdrop-filter: blur(10px);
+    /* Тонкая полупрозрачная рамка, создающая эффект грани стекла */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Сильное закругление углов (20px) */
+    border-radius: 20px;
+    /* Внутренние отступы, чтобы текст не прижимался к краям карточки */
+    padding: 40px;
+    /* Гарантирует, что padding не увеличит общую ширину блока (останется ровно 1100px) */
+    box-sizing: border-box;
+}
+
+
+.price-subtitle {
+    /* Фиксированный размер шрифта (хорошо читается на большинстве экранов) */
+    font-size: 18px;
+    /* Делает текст слегка прозрачным (85%), чтобы визуально отделить его от главного заголовка */
+    opacity: 0.85;
+    /* Отступ снизу, чтобы создать свободное пространство перед следующим элементом */
+    margin-bottom: 30px;
 }
 
 .price-info h2 {
-    margin-bottom: 90px;
-    width: 50%;
+    /* «Умный» размер шрифта: минимум 26px, максимум 42px, а в промежутке плавно меняется как 4% от ширины экрана */
+    font-size: clamp(26px, 4vw, 42px);
+    /* Отступ снизу, чтобы заголовок не «прилипал» к основному тексту */
+    margin-bottom: 20px;
+    /* Межстрочный интервал: делает текст компактнее (обычно стандарт 1.4-1.5, здесь 1.2 для плотности) */
+    line-height: 1.2;
+    margin-left: 0;
 }
 
-.price-info p {
-    width: 50%;
+.price-features {
+    /* Включает режим сетки (Grid Layout) для управления дочерними элементами */
+    display: grid;
+    /* Делит блок на 2 колонки равной ширины (1fr — одна часть свободного места) */
+    grid-template-columns: repeat(2, 1fr);
+    /* Отступы в сетке: 14px между строками и 24px между колонками */
+    gap: 14px 24px;
+    /* Внешний отступ снизу, чтобы отделить список от следующего блока */
+    margin-bottom: 30px;
+}
+.feature {
+    /* Включает Flexbox, чтобы иконка и текст встали в одну горизонтальную линию */
+    display: flex;
+    /* Устанавливает фиксированный отступ в 10px между иконкой и текстом */
+    gap: 10px;
+    /* Выравнивает иконку и текст строго по центру их общей горизонтальной оси */
+    align-items: center;
+    /* Базовый размер шрифта для комфортного чтения описания преимуществ */
+    font-size: 16px;
+    /* Межстрочный интервал: добавляет немного «воздуха» между строками текста */
+    line-height: 1.4;
+}
+.price-conditions {
+    /* Уменьшенный размер шрифта для второстепенной информации */
+    font-size: 14px;
+    /* Делает текст еще менее заметным (70% непрозрачности), чем основной контент */
+    opacity: 0.7;
+    /* Тонкая полупрозрачная линия сверху, отделяющая условия от основного списка */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    /* Отступ сверху от линии, чтобы текст не «прилипал» к разделителю */
+    padding-top: 20px;
 }
 
 /* =========================================================
-   Подвал
+   МОБИЛЬНАЯ ВЕРСИЯ ЧЕТВЕРТОГО БЛОКА (price-info) ЦЕНЫ
    ========================================================= */
-footer .fixed-container {
+/* Условие: стили внутри сработают только если ширина экрана 768px или меньше */
+@media (max-width: 768px) {
+    .price-info {
+        /* Уменьшает внешние отступы всего блока (было 80px/20px), чтобы сэкономить место */
+        padding: 40px 16px;
+    }
+    .price-info .fixed-container {
+        /* Делает внутренний отступ карточки компактнее (было 40px) */
+        padding: 20px;
+    }
+    .price-features {
+        /* Перестраивает сетку: вместо двух колонок теперь одна (элементы встают друг под друга) */
+        grid-template-columns: 1fr;
+    }
+    .price-info h2 {
+        /* Фиксирует размер заголовка на 26px, отключая динамический clamp для стабильности */
+        font-size: 26px;
+    }
+}
+
+
+/* =========================
+   ПОДВАЛ сайта (основной контейнер футера с картой)
+========================= */
+
+.footer-map {
+    position: relative; /* создаём контекст для absolute (карта и overlay будут внутри) */
+    min-height: 380px;  /* минимальная высота футера (чтобы карта не схлопнулась) */
+    overflow: hidden;   /* обрезаем всё, что выходит за границы блока */
+    color: #fff;        /* базовый цвет текста внутри футера */
+}
+
+/* =========================
+   КАРТА (фон футера)
+========================= */
+
+.map-bg {
+    position: absolute; /* выводим карту из потока документа */
+    inset: 0;           /* top:0 right:0 bottom:0 left:0 (растягиваем на весь футер) */
+    z-index: 0;         /* самый нижний слой */
+}
+
+.map-bg iframe {
+    width: 100%;        /* карта по ширине контейнера */
+    height: 100%;       /* карта по высоте контейнера */
+    border: 0;          /* убираем рамку iframe */
+}
+
+/* =========================
+   ЗАТЕМНЕНИЕ ПОВЕРХ КАРТЫ
+========================= */
+
+.overlay {
+    position: absolute;        /* накладываем поверх карты */
+    inset: 0;                  /* растягиваем на весь футер */
+    background: rgba(0,0,0,0.55); /* затемнение (делает текст читаемым) */
+    z-index: 1;                /* слой выше карты */
+}
+
+/* =========================
+   КОНТЕНТ ФУТЕРА (ссылки, контакты, кнопки)
+========================= */
+
+.footer-map .fixed-container {
+    position: relative;
+    z-index: 2;
+
+    max-width: 1200px;
+    margin: 0 auto;
+
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 50px;
+    align-items: center;  /* ← ИЗМЕНИЛ с flex-start на center */
+
+    padding: 40px;
+    box-sizing: border-box;
+
+    min-height: 380px;  /* ← ДОБАВИЛ: минимальная высота = высоте карты */
 }
 
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+/* =========================
+   БЛОКИ ВНУТРИ ФУТЕРА
+========================= */
 
-.contacts {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-}
-
+.footer-links,
+.contacts,
 .action {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    display: flex;        /* включаем flex */
+    flex-direction: column; /* элементы идут вертикально */
+    gap: 40px;            /* расстояние между элементами */
+}
+
+/* =========================
+   ССЫЛКИ И КОНТАКТЫ
+========================= */
+
+.footer-links a,
+.contacts a,
+.contacts span {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+
+    font-size: 30px;        /* 👈 увеличили текст */
+    font-weight: 500;       /* 👈 чуть жирнее, уже “премиум” */
+    letter-spacing: 0.3px;  /* 👈 воздух между буквами */
+    font-family: 'Roboto', sans-serif;
+
+    opacity: 1;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+/* hover эффект (при наведении) */
+.footer-links a:hover,
+.contacts a:hover {
+    color: #ffffff;
+
+    transform: translateX(4px); /* лёгкое движение */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+
+    font-weight: 600; /* становится чуть жирнее */
+}
+/* =========================
+   КНОПКА(ССЫЛКА НА ЯНДЕКС КАРТУ) В ФУТЕРЕ
+========================= */
+.map-button {
+    display: inline-block; /* делает ссылку как кнопку (можно задавать размеры) */
+
+    padding: 12px 22px; /* внутренние отступы: сверху/снизу 12px, по бокам 22px */
+
+    border-radius: 10px; /* скругление углов */
+
+    color: #fff; /* цвет текста — белый */
+
+    text-decoration: none; /* убираем подчёркивание ссылки */
+
+    font-size: 15px; /* размер текста */
+
+    font-weight: 500; /* немного жирнее обычного текста */
+
+    background: linear-gradient(
+        270deg,
+        #00c6ff,
+        #0072ff,
+        #00ffb3,
+        #00c6ff
+    ); /* градиент (синий + зелёный) */
+
+    background-size: 300% 300%; /* увеличиваем градиент для анимации */
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* плавность эффектов */
+
+    box-shadow: 0 0 10px rgba(0, 150, 255, 0.4); /* лёгкое свечение */
+
+    animation: gradientMove 6s ease infinite; /* анимация переливания */
+}
+
+/* ✨ анимация градиента */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%; /* стартовая позиция */
+    }
+    50% {
+        background-position: 100% 50%; /* середина (сдвиг градиента) */
+    }
+    100% {
+        background-position: 0% 50%; /* возвращаем назад */
+    }
+}
+
+/* 🖱 при наведении */
+.map-button:hover {
+    transform: translateY(-2px); /* кнопка чуть “поднимается” вверх */
+
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.7); /* усиливаем свечение */
+}
+
+/* 🖱 при клике */
+.map-button:active {
+    transform: scale(0.97); /* лёгкое нажатие */
 }
 
 .action button {
-    margin-bottom: 25px;
+    margin-bottom: 20px; /* отступ между кнопкой и иконками */
 }
+
+/* =========================
+   КНОПКА (Забронировать) В ФУТЕРЕ
+========================= */
+
+.footer-button {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    /* создаём градиентный фон: голубой → синий (эффект современного UI) */
+
+    border: none;
+    /* убираем стандартную рамку браузера */
+
+    color: #fff;
+    /* цвет текста — белый для контраста */
+
+    padding: 12px 22px;
+    /* внутренние отступы:
+       12px сверху/снизу, 22px слева/справа (размер кнопки) */
+
+    border-radius: 10px;
+    /* скругляем углы (делает кнопку мягкой и современной) */
+
+    font-size: 15px;
+    /* размер текста внутри кнопки */
+
+    font-weight: 600;
+    /* делаем текст полужирным (CTA выглядит сильнее) */
+
+    cursor: pointer;
+    /* курсор “рука” при наведении (показывает кликабельность) */
+
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.35);
+    /* мягкое голубое свечение вокруг кнопки (эффект “подсветки”) */
+
+    transition: all 0.25s ease;
+    /* плавная анимация всех изменений (hover / active) */
+}
+
+/* =========================
+   ЭФФЕКТ ПРИ НАВЕДЕНИИ
+========================= */
+
+.footer-button:hover {
+    transform: translateY(-2px);
+    /* кнопка немного поднимается вверх (эффект “живости”) */
+
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.6);
+    /* усиливаем свечение при наведении */
+
+    filter: brightness(1.1);
+    /* слегка увеличиваем яркость кнопки */
+}
+
+/* =========================
+   ЭФФЕКТ ПРИ НАЖАТИИ
+========================= */
+
+.footer-button:active {
+    transform: scale(0.97);
+    /* кнопка немного “сжимается” при клике (эффект нажатия) */
+}
+
+
+/* =========================
+   СОЦИАЛЬНЫЕ ИКОНКИ
+========================= */
 
 .icons {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+    display: flex; /* размещаем иконки в ряд */
+    gap: 80px;     /* расстояние между иконками */
 }
 
-footer img {
-    width: 17px;
-    height: 14px;
+.icons img {
+    width: 40px;   /* размер иконки */
+    height: 40px;  /* фиксируем высоту */
+    cursor: pointer; /* курсор "рука" */
+    opacity: 0.85;   /* слегка приглушаем */
+    transition: 0.2s; /* плавная анимация при hover */
+}
+
+/* hover эффект для иконок */
+.icons img:hover {
+    opacity: 1;         /* делаем ярче */
+    transform: scale(1.1); /* лёгкое увеличение */
+}
+
+/* =========================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================= */
+
+@media (max-width: 768px) {
+
+    .footer-map .fixed-container {
+        flex-direction: column; /* колонки становятся вертикальными */
+        align-items: center;    /* центрируем всё */
+        text-align: center;     /* текст по центру */
+        gap: 25px;              /* расстояние между блоками */
+        padding: 20px;          /* уменьшаем отступы */
+    }
+
+    .footer-links,
+    .contacts,
+    .action {
+        align-items: center; /* центрируем элементы внутри блоков */
+    }
+
+    .icons {
+        justify-content: center; /* центрируем иконки */
+    }
 }
 
 /* =========================================================
@@ -672,18 +1064,6 @@ footer img {
 
     .work-examples img {
         width: 100%;
-    }
-
-    /* Цены */
-    .price-info {
-        height: auto;
-        padding: 40px 16px;
-    }
-
-    .price-info h2,
-    .price-info p {
-        width: 100%;
-        font-size: 22px;
     }
 
 
