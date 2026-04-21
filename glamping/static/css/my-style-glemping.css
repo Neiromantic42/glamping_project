@@ -264,6 +264,14 @@ section {
     max-width: 500px;
 }
 
+.hero-address {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 17px;
+    line-height: 1.55;
+    margin: 0 0 28px;
+    max-width: 500px;
+}
+
 .hero-tags {
     display: flex;
     flex-wrap: wrap;

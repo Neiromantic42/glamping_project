@@ -41,8 +41,11 @@
 
                 <!-- Телефон + кнопка справа -->
                 <div class="header-actions">
-                    <a href="tel:+79178521635" class="header-phone">+7 (917) 852-16-35</a>
-                    <button class="header-button open-popup">Забронировать</button>
+                    <a href="tel:+79178521635" class="header-phone">{{ glamping.phone }}</a>
+                    <a href="{% url 'bookings:booking' %}" class="header-button">
+                        Забронировать
+                    </a>
+{#                    <button class="header-button open-popup">Забронировать</button>#}
                 </div>
 
             </div>
@@ -58,7 +61,7 @@
                 <a href="#">Фото глемпинга</a>
                 <a href="#">Удобства</a>
                 <a href="#">Контакты</a>
-                <a href="tel:+79178521635">+7 (917) 852-16-35</a>
+                <a href="tel:+79178521635">{{ glamping.phone }}</a>
                 <button class="light-button open-popup">Забронировать</button>
             </div>
         </header>
@@ -68,15 +71,18 @@
             <div class="hero-inner">
 
                 <!-- Локация -->
-                <p class="hero-location">Лаишево · Республика Татарстан</p>
+                <p class="hero-location">{{ glamping.location }}</p>
 
                 <!-- Заголовок -->
-                <h1 class="hero-title">/\ Кама ГЛ</h1>
+                <h1 class="hero-title">{{ glamping.title }}</h1>
 
                 <!-- Слоган / краткая информация -->
                 <p class="hero-subtitle">
-                    Глемпинг у реки Кама — комфорт и природа<br>
-                    в 400 м от воды. Сезон: апрель — октябрь.
+                    {{ glamping.description}}
+                </p>
+                <!-- Адрес -->
+                <p class="hero-address">
+                    {{ glamping.address }}
                 </p>
 
                 <!-- Мини-преимущества / теги -->
@@ -91,8 +97,8 @@
 
                 <!-- Информация о цене и условиях -->
                 <div class="hero-info">
-                    <span class="hero-price">7 190 ₽/сут</span>
-                    <span class="hero-hint">Залог 3 000 ₽ · Заезд с 14:00</span>
+                    <span class="hero-price">{{ glamping.price_per_night }} ₽/сут</span>
+                    <span class="hero-hint">Залог {{ glamping.deposit }} ₽ · Заезд с {{ glamping.check_in_time }}</span>
                 </div>
 
             </div>
@@ -174,11 +180,11 @@
 
                 <h2>
                     Глэмпинг у реки Кама<br>
-                    от 7 190 ₽ / сутки за дом
+                    от {{ glamping.price_per_night }} ₽ / сутки за дом
                 </h2>
 
                 <p class="price-subtitle">
-                    До 4 гостей · сезон: апрель — октябрь · залог 3 000 ₽
+                    До {{ glamping.max_guests }} гостей · сезон: апрель — октябрь · залог {{ glamping.deposit }} ₽
                 </p>
 
                 <div class="price-features">
@@ -211,12 +217,12 @@
                 </div>
 
                 <p class="price-conditions">
-                    Заезд с 14:00 · Выезд до 12:00 · Без вечеринок · Курение запрещено
+                    Заезд с {{ glamping.check_in_time }} · Выезд до {{ glamping.check_out_time }} · Без вечеринок · Курение запрещено
                 </p>
 
             </div>
         </section>
-
+        <!-- ===== ПЯТЫЙ БЛОК ПОДВАЛ ===== -->
         <footer class="footer-map">
             <div class="map-bg">
                 <iframe src="https://yandex.ru/map-widget/v1/?ll=49.545043,55.399510&z=15&pt=49.545043,55.399510,pm2rdm"></iframe>
@@ -231,9 +237,9 @@
                     <a href="#experience">Уникальный опыт</a>
                 </div>
                 <div class="contacts">
-                    <span>Ialexse@yandex.ru</span>
+                    <span>{{ glamping.email }}</span>
                     <a href="tel:+79178521635" title="Позвонить с телефона">
-                        +7 (917) 852-16-35
+                        {{ glamping.phone }}
                     </a>
                     <a href="https://yandex.ru/maps/?rtext=~55.399510,49.545043" target="_blank" class="map-button">
                         📍 Проложить маршрут

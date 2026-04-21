@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование — /\ Кама ГЛ</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Flatpickr CSS (для красивого date picker) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+</head>
+<body>
+
+    <!-- Фон с overlay -->
+    <div class="booking-bg"></div>
+    <div class="overlay"></div>
+
+    <!-- Форма бронирования -->
+    <div class="booking-container">
+        <div class="booking-card">
+
+            <!-- Заголовок -->
+            <div class="booking-header">
+                <h1>/\ Кама ГЛ</h1>
+                <p>Забронируйте ваш идеальный отдых</p>
+            </div>
+
+            <!-- Форма -->
+            <form method="POST" action="{% url 'bookings:booking' %}" class="booking-form">
+                {% csrf_token %}
+
+                <!-- Имя -->
+                <div class="form-group">
+                    <label for="name">Ваше имя <span class="required">*</span></label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Иван Иванов"
+                        required
+                    >
+                </div>
+
+                <!-- Телефон -->
+                <div class="form-group">
+                    <label for="phone">Телефон <span class="required">*</span></label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="+7 (999) 123-45-67"
+                        pattern="[+]?[0-9\s\(\)-]{10,18}"
+                        required
+                    >
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@mail.ru"
+                        required
+                    >
+                </div>
+
+                <!-- Даты (диапазон) -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="check_in">Заезд <span class="required">*</span></label>
+                        <input
+                            type="text"
+                            id="check_in"
+                            name="check_in"
+                            placeholder="Выберите дату"
+                            readonly
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="check_out">Выезд <span class="required">*</span></label>
+                        <input
+                            type="text"
+                            id="check_out"
+                            name="check_out"
+                            placeholder="Выберите дату"
+                            readonly
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Количество гостей -->
+                <div class="form-group">
+                    <label for="guests">Количество гостей <span class="required">*</span></label>
+                    <select id="guests" name="guests" required>
+                        <option value="">Выберите</option>
+                        <option value="1">1 гость</option>
+                        <option value="2" selected>2 гостя</option>
+                        <option value="3">3 гостя</option>
+                        <option value="4">4 гостя</option>
+                        <option value="5">5 гостей</option>
+                        <option value="6">6 гостей</option>
+                        <option value="7">7 гостей</option>
+                        <option value="8">8 гостей</option>
+                        <option value="9">9 гостей</option>
+                        <option value="10">10 гостей</option>
+                    </select>
+                </div>
+
+                <!-- Кнопка -->
+                <button type="submit" class="btn-book">Забронировать</button>
+
+                <!-- Ссылка назад -->
+                <a href="{% url 'glamping:home_page' %}" class="btn-back">← Вернуться на главную</a>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Flatpickr JS (date picker) -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+
+    <script>
+        // Инициализация date picker для диапазона дат
+        flatpickr("#check_in", {
+            locale: "ru",
+            minDate: "today",
+            dateFormat: "d.m.Y",
+            onChange: function(selectedDates, dateStr, instance) {
+                // Устанавливаем минимальную дату выезда = дата заезда + 1 день
+                checkOutPicker.set('minDate', new Date(selectedDates[0].getTime() + 86400000));
+            }
+        });
+
+        const checkOutPicker = flatpickr("#check_out", {
+            locale: "ru",
+            minDate: new Date(new Date().getTime() + 86400000), // завтра
+            dateFormat: "d.m.Y"
+        });
+    </script>
+
+</body>
+</html>

@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('', include('glamping.urls')) # теперь главная страница берётся из приложения glamping
+    path("admin/", admin.site.urls), # админка
+    path('', include('glamping.urls')), # теперь главная страница берётся из приложения glamping
+    path('booking/', include('bookings.urls')), # подключаем url бронирования глемпинга все страницы
 ]
