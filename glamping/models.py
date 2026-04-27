@@ -2,10 +2,8 @@ from datetime import time
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.validators import RegexValidator
 from django.db import models # импорт модулей для создания моделей
-from django.contrib.auth.models import User  # импорт модели пользователя Django
-from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.utils.text import slugify
+
 
 
 class Glamping(models.Model):

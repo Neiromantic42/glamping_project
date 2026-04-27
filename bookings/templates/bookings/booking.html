@@ -16,138 +16,200 @@
 </head>
 <body>
 
-    <!-- Фон с overlay -->
-    <div class="booking-bg"></div>
-    <div class="overlay"></div>
+<!-- Фон с overlay -->
+<div class="booking-bg"></div>
+<div class="overlay"></div>
 
-    <!-- Форма бронирования -->
-    <div class="booking-container">
-        <div class="booking-card">
+<!-- Форма бронирования -->
+<div class="booking-container">
+    <div class="booking-card">
 
-            <!-- Заголовок -->
-            <div class="booking-header">
-                <h1>/\ Кама ГЛ</h1>
-                <p>Забронируйте ваш идеальный отдых</p>
-            </div>
+        <!-- Заголовок -->
+        <div class="booking-header">
+            <h1>/\ Кама ГЛ</h1>
+            <p>Забронируйте ваш идеальный отдых</p>
+        </div>
 
-            <!-- Форма -->
-            <form method="POST" action="{% url 'bookings:booking' %}" class="booking-form">
-                {% csrf_token %}
+        <!-- Форма -->
+        <form method="POST" action="{% url 'bookings:booking' %}" class="booking-form">
+            {% csrf_token %}
 
-                <!-- Имя -->
-                <div class="form-group">
-                    <label for="name">Ваше имя <span class="required">*</span></label>
-                    <input
+            <!-- Имя -->
+            <div class="form-group">
+                <label for="name">Ваше имя <span class="required">*</span></label>
+                <input
                         type="text"
                         id="name"
                         name="name"
                         placeholder="Иван Иванов"
                         required
-                    >
-                </div>
+                >
+            </div>
 
-                <!-- Телефон -->
-                <div class="form-group">
-                    <label for="phone">Телефон <span class="required">*</span></label>
-                    <input
+            <!-- Телефон -->
+            <div class="form-group">
+                <label for="phone">Телефон <span class="required">*</span></label>
+                <input
                         type="tel"
                         id="phone"
                         name="phone"
                         placeholder="+7 (999) 123-45-67"
                         pattern="[+]?[0-9\s\(\)-]{10,18}"
                         required
-                    >
-                </div>
+                >
+            </div>
 
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="email">Email <span class="required">*</span></label>
-                    <input
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input
                         type="email"
                         id="email"
                         name="email"
                         placeholder="example@mail.ru"
                         required
-                    >
-                </div>
+                >
+            </div>
 
-                <!-- Даты (диапазон) -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="check_in">Заезд <span class="required">*</span></label>
-                        <input
+            <!-- Даты (диапазон) -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="check_in">Заезд <span class="required">*</span></label>
+                    <input
                             type="text"
                             id="check_in"
-                            name="check_in"
+                            name="check_in_date"
                             placeholder="Выберите дату"
                             readonly
                             required
-                        >
-                    </div>
-                    <div class="form-group">
-                        <label for="check_out">Выезд <span class="required">*</span></label>
-                        <input
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="check_out">Выезд <span class="required">*</span></label>
+                    <input
                             type="text"
                             id="check_out"
-                            name="check_out"
+                            name="check_out_date"
                             placeholder="Выберите дату"
                             readonly
                             required
-                        >
-                    </div>
+                    >
                 </div>
+            </div>
 
-                <!-- Количество гостей -->
-                <div class="form-group">
-                    <label for="guests">Количество гостей <span class="required">*</span></label>
-                    <select id="guests" name="guests" required>
-                        <option value="">Выберите</option>
-                        <option value="1">1 гость</option>
-                        <option value="2" selected>2 гостя</option>
-                        <option value="3">3 гостя</option>
-                        <option value="4">4 гостя</option>
-                        <option value="5">5 гостей</option>
-                        <option value="6">6 гостей</option>
-                        <option value="7">7 гостей</option>
-                        <option value="8">8 гостей</option>
-                        <option value="9">9 гостей</option>
-                        <option value="10">10 гостей</option>
-                    </select>
-                </div>
+            <!-- Количество гостей -->
+            <div class="form-group">
+                <label for="guests">Количество гостей <span class="required">*</span></label>
+                <select id="guests" name="guests_count" required>
+                    <option value="">Выберите</option>
+                    <option value="1">1 гость</option>
+                    <option value="2" selected>2 гостя</option>
+                    <option value="3">3 гостя</option>
+                    <option value="4">4 гостя</option>
+                    <option value="5">5 гостей</option>
+                    <option value="6">6 гостей</option>
+                    <option value="7">7 гостей</option>
+                    <option value="8">8 гостей</option>
+                    <option value="9">9 гостей</option>
+                    <option value="10">10 гостей</option>
+                </select>
+            </div>
 
-                <!-- Кнопка -->
-                <button type="submit" class="btn-book">Забронировать</button>
+            <!-- Кнопка -->
+            <button type="submit" class="btn-book">Забронировать</button>
 
-                <!-- Ссылка назад -->
-                <a href="{% url 'glamping:home_page' %}" class="btn-back">← Вернуться на главную</a>
+            <!-- Ссылка назад -->
+            <a href="{% url 'glamping:home_page' %}" class="btn-back">← Вернуться на главную</a>
 
-            </form>
+        </form>
 
-        </div>
     </div>
+</div>
 
-    <!-- Flatpickr JS (date picker) -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+<!-- Flatpickr JS (date picker) -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
 
-    <script>
-        // Инициализация date picker для диапазона дат
+<script>
+    let disabledDates = [];
+    let checkOutPicker = null;
+
+    /**
+     * Конвертация даты в безопасный формат (без timezone багов)
+     */
+    function parseDate(dateStr) {
+        // ожидаем YYYY-MM-DD
+        const [y, m, d] = dateStr.split("-").map(Number);
+        return new Date(y, m - 1, d); // локальная дата без UTC смещения
+    }
+
+    /**
+     * -1 день (для правильного закрытия диапазона)
+     */
+    function minusOneDay(dateStr) {
+        const date = parseDate(dateStr);
+        date.setDate(date.getDate() - 1);
+        return date;
+    }
+
+    /**
+     * Инициализация календаря
+     */
+    function initCalendar() {
+
         flatpickr("#check_in", {
             locale: "ru",
             minDate: "today",
             dateFormat: "d.m.Y",
-            onChange: function(selectedDates, dateStr, instance) {
-                // Устанавливаем минимальную дату выезда = дата заезда + 1 день
-                checkOutPicker.set('minDate', new Date(selectedDates[0].getTime() + 86400000));
+
+            disable: disabledDates,
+
+            onChange: function (selectedDates) {
+                if (!selectedDates.length) return;
+
+                const minOut = new Date(selectedDates[0]);
+                minOut.setDate(minOut.getDate() + 1);
+
+                checkOutPicker.set('minDate', minOut);
             }
         });
 
-        const checkOutPicker = flatpickr("#check_out", {
+        checkOutPicker = flatpickr("#check_out", {
             locale: "ru",
-            minDate: new Date(new Date().getTime() + 86400000), // завтра
-            dateFormat: "d.m.Y"
+            minDate: new Date().fp_incr(1),
+            dateFormat: "d.m.Y",
+            disable: disabledDates
         });
-    </script>
+    }
+
+    /**
+     * Загрузка занятых дат с backend
+     */
+    fetch("/booking/api/bookings/dates/")
+        .then(res => {
+            if (!res.ok) throw new Error("API error " + res.status);
+            return res.json();
+        })
+        .then(data => {
+
+            console.log("RAW DATA:", data);
+
+            disabledDates = data.map(item => ({
+                from: parseDate(item.from),
+                to: minusOneDay(item.to)
+            }));
+
+            console.log("DISABLED:", disabledDates);
+
+            initCalendar();
+        })
+        .catch(err => {
+            console.error("Ошибка загрузки дат:", err);
+            initCalendar(); // даже если API упал — календарь работает
+        });
+
+</script>
+</script>
 
 </body>
 </html>

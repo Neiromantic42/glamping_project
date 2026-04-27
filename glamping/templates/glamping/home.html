@@ -62,7 +62,10 @@
                 <a href="#">Удобства</a>
                 <a href="#">Контакты</a>
                 <a href="tel:+79178521635">{{ glamping.phone }}</a>
-                <button class="light-button open-popup">Забронировать</button>
+                <a href="{% url 'bookings:booking' %}" class="booking-button">
+                    Забронировать
+                </a>
+{#                <button class="light-button open-popup">Забронировать</button>#}
             </div>
         </header>
 
@@ -246,9 +249,12 @@
                     </a>
                 </div>
                 <div class="action">
-                    <button class="light-button footer-button open-popup">
+                    <a href="{% url 'bookings:booking' %}" class="light-button footer-button">
                         Забронировать
-                    </button>
+                    </a>
+{#                    <button class="light-button footer-button open-popup">#}
+{#                        Забронировать#}
+{#                    </button>#}
                     <div class="icons">
                         <a href="https://t.me/shveinx?text=Здравствуйте!%20Хочу%20забронировать%20глэмпинг" target="_blank">
                             <img src="{% static 'img/icons-img/telegram.png' %}" alt="Telegram">
