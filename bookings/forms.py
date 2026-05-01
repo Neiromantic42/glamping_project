@@ -34,10 +34,14 @@ class BookingForm(forms.ModelForm):
             raise forms.ValidationError("Имя не должно содержать цифр")
         return name
 
-    def clean_guests_count(self):
-        """
-        Валидируем кол-во гостей
-        """
+    # def clean_guests_count(self):
+    #     """
+    #     Валидируем кол-во гостей
+    #     """
+    #     guests_count = self.cleaned_data.get("guests_count")
+    #     guests_count = int(guests_count)
+    #     return guests_count
+
 
     def clean(self):
         """

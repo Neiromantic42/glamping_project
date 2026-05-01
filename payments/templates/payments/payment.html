@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата бронирования — /\ Кама ГЛ</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+</head>
+<body>
+
+    <!-- Фон с overlay -->
+    <div class="payment-bg"></div>
+    <div class="overlay"></div>
+
+    <!-- Контейнер страницы -->
+    <div class="payment-container">
+
+        <!-- ============================================
+             БЛОК 1: Инструкция
+             ============================================ -->
+        <div class="payment-card instruction-card">
+            <div class="card-header">
+                <h1>📋 Инструкция по оплате</h1>
+            </div>
+            <div class="instruction-content">
+                <p>Для подтверждения вашего бронирования необходимо внести предоплату.</p>
+
+                <div class="instruction-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-text">
+                            <strong>Выберите сумму:</strong>
+                            <p>Вы можете оплатить <strong>50% (минимум)</strong> или <strong>100%</strong> от общей стоимости.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-text">
+                            <strong>Переведите деньги:</strong>
+                            <p>Используйте реквизиты ниже. Перевод по номеру телефона через СБП или на карту.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-text">
+                            <strong>Подтвердите оплату:</strong>
+                            <p>Нажмите кнопку <strong>"Я оплатил(а)"</strong> внизу страницы. Мы проверим платёж и подтвердим бронь.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-notice">
+                    <strong>⏱ Важно:</strong> После оплаты ожидайте подтверждения от нас в течение 1-2 часов (в рабочее время).
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             БЛОК 2: Данные бронирования
+             ============================================ -->
+        <div class="payment-card booking-details-card">
+            <div class="card-header">
+                <h2>🏕 Детали бронирования</h2>
+            </div>
+            <div class="booking-details">
+                <div class="detail-row">
+                    <span class="detail-label">Имя:</span>
+                    <span class="detail-value">{{ booking.name }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Телефон:</span>
+                    <span class="detail-value">{{ booking.phone }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value">{{ booking.email }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Заезд:</span>
+                    <span class="detail-value">{{ booking.check_in }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Выезд:</span>
+                    <span class="detail-value">{{ booking.check_out }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Количество гостей:</span>
+                    <span class="detail-value">{{ booking.guests_count }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Количество ночей:</span>
+                    <span class="detail-value">{{ booking.nights }} ночи</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             БЛОК 3: Реквизиты для оплаты
+             ============================================ -->
+        <div class="payment-card payment-info-card">
+            <div class="card-header">
+                <h2>💳 Реквизиты для оплаты</h2>
+            </div>
+            <div class="payment-info">
+
+                <!-- Сумма к оплате -->
+                <div class="total-amount">
+                    <div class="amount-item">
+                        <span class="amount-label">Общая стоимость:</span>
+                        <span class="amount-value">{{ booking.total_price }} ₽</span>
+                    </div>
+                    <div class="amount-item highlight">
+                        <span class="amount-label">Предоплата (50%):</span>
+                        <span class="amount-value large">{{ booking.prepayment }} ₽</span>
+                    </div>
+                    <div class="amount-note">
+                        Остаток ({{ booking.remainder }} ₽) оплачивается при заезде
+                    </div>
+                </div>
+
+                <!-- Реквизиты -->
+                <div class="payment-details">
+                    <h3>Перевод по номеру телефона (СБП):</h3>
+                    <div class="requisite-box">
+                        <span class="requisite-label">Номер телефона:</span>
+                        <span class="requisite-value copyable">{{ payment_details.phone }}</span>
+                        <button class="copy-btn" onclick="copyToClipboard({{ payment_details.phone }})">📋 Копировать</button>
+                    </div>
+                    <div class="requisite-box">
+                        <span class="requisite-label">Банк получателя:</span>
+                        <span class="requisite-value">{{ payment_details.bank }}</span>
+                    </div>
+                    <div class="requisite-box">
+                        <span class="requisite-label">Получатель:</span>
+                        <span class="requisite-value">{{ payment_details.recipient }}</span>
+                    </div>
+                </div>
+
+                <div class="payment-note">
+                    <strong>💡 Подсказка:</strong> В комментарии к переводу укажите ваше имя и даты бронирования.
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================
+             БЛОК 4: Кнопка подтверждения
+             ============================================ -->
+        <div class="payment-card confirm-card">
+            <form method="POST" action="#">
+                {% csrf_token %}
+                <button type="submit" class="btn-confirm">
+                    ✅ Я оплатил(а)
+                </button>
+                <p class="confirm-note">
+                    После нажатия мы получим уведомление и проверим платёж
+                </p>
+            </form>
+        </div>
+
+        <!-- ============================================
+             БЛОК 5: Условия возврата (подвал)
+             ============================================ -->
+        <div class="payment-card refund-card">
+            <div class="card-header">
+                <h3>📜 Условия возврата предоплаты</h3>
+            </div>
+            <div class="refund-content">
+                <ul>
+                    <li>Предоплата <strong>возвращается полностью</strong>, если вы отменяете бронь <strong>не позднее чем за 14 дней</strong> до заселения.</li>
+                    <li>При отмене менее чем за 14 дней — предоплата <strong>не возвращается</strong>.</li>
+                    <li><strong>Исключения:</strong> форс-мажорные обстоятельства (болезнь, ЧП), подтверждённые документально (справка от врача, официальные документы).</li>
+                    <li>Для возврата свяжитесь с нами по телефону <a href={{ payment_details.phone }}>{{ payment_details.phone }}</a> или email.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Кнопка "Назад" -->
+        <a href="{% url 'glamping:home_page' %}" class="btn-back">← Вернуться на главную</a>
+
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Номер телефона скопирован!');
+            });
+        }
+    </script>
+
+</body>
+</html>

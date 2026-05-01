@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "glamping", # наше приложение для главной страницы
     "bookings", # приложение для бронирования глемпинга
+    "payments" # приложение для оплаты бронирования
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,17 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+# Настройка Google почты для уведомления арендодателю
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = "afrika8759116@gmail.com"
+EMAIL_HOST_PASSWORD = "ikyr vves vdyo syhk"
+OWNER_EMAIL = "t_afrika_777ne@mail.ru"
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
