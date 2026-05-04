@@ -20,15 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv("SECRET_KEY")
-SECRET_KEY = "django-insecure-#jagw_s8mzh%@%%-&l+5_rw=i*7k9u&3ui9lv@53g34vqw^d&*"
+SECRET_KEY = os.getenv("SECRET_KEY") # Настройка получения секретного ключа для продакшена
+# SECRET_KEY = "django-insecure-#jagw_s8mzh%@%%-&l+5_rw=i*7k9u&3ui9lv@53g34vqw^d&*"
 # SECURITY WARNING: don't run with debug turned on in production!
-# Дебаг в прод
-# DEBUG = os.getenv("DEBUG", "False").lower() == "true"
-DEBUG = True
-
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",") if os.getenv("ALLOWED_HOSTS") else []
-
+# Настройка дебак в продакшен
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+# DEBUG = True # Настройка дебаг для локальной разработки
+# Настройка ALLOWED_HOSTS для локальной разработки
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",") if os.getenv("ALLOWED_HOSTS") else []
+# Настройка ALLOWED_HOSTS для продакшен версии
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
 # Application definition
 
