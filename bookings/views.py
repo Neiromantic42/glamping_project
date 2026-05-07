@@ -31,6 +31,9 @@ def booking(request: HttpRequest) -> HttpResponse:
             if is_available:
                 booking = create_booking(form=form, glamping=glamping)
                 return redirect('payment:payment_page', booking_id=booking.pk)
+            form.add_error(None, "Эти даты уже заняты")
+            return render(request, "bookings/booking.html", {"form": form})
+
         else:
             print(form.errors)
             logger.warning(form.errors)

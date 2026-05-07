@@ -31,6 +31,11 @@ DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 # Настройка ALLOWED_HOSTS для продакшен версии
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8080",
+    "http://localhost:8080",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,7 +47,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "glamping", # наше приложение для главной страницы
     "bookings", # приложение для бронирования глемпинга
-    "payments" # приложение для оплаты бронирования
+    "payments", # приложение для оплаты бронирования
+    "gallery", # приложения галерея глемпинга(все фото в отдельной странице)
 ]
 
 MIDDLEWARE = [
@@ -166,3 +172,7 @@ EMAIL_HOST_PASSWORD = "ikyr vves vdyo syhk"
 OWNER_EMAIL = "t_afrika_777ne@mail.ru"
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# === MEDIA (загрузки: фото, файлы, галерея) ===
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

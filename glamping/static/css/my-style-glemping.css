@@ -350,26 +350,6 @@ button {
     color: #fff;
     margin-top: 20px;
 }
-/* =========================================================
-   Кнопки второго блока
-   ========================================================= */
-.second-section-button {
-    background: linear-gradient(90deg, #ff8c00, #ffa500); /* Создаём градиент фона слева направо от оранжевого к светло-оранжевому */
-    color: #fff; /* Цвет текста белый */
-    padding: 12px 28px; /* Внутренние отступы: 12px сверху/снизу, 28px слева/справа */
-    border-radius: 30px; /* Скругляем углы кнопки, чтобы она была округлой */
-    font-weight: 600; /* Жирность текста — полужирный */
-    font-size: 18px; /* Размер шрифта текста кнопки */
-    border: none; /* Убираем стандартную границу браузера */
-    cursor: pointer; /* Курсор меняется на «руку» при наведении, что показывает кликабельность */
-    transition: all 0.3s ease;  /* Плавный переход всех свойств (hover/active) за 0.3 секунды с плавной кривой ease */
-    margin-left: 45px; /* Зачем то сместил кнопку вправо на мобилке выглядит криво  */
-}
-
-.second-section-button:hover {
-    transform: scale(1.05);  /* При наведении кнопка слегка увеличивается (5%) */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Добавляем тень, чтобы кнопка «поднималась» визуально */
-}
 
 
 /* =========================================================
@@ -442,6 +422,47 @@ button {
 }
 
 /* =========================================================
+   Кнопки второго блока
+   ========================================================= */
+.second-section-button {
+    display: inline-block;          /* важно для hover/transform */
+
+    margin-left: 45px;              /* твой текущий сдвиг */
+
+    padding: 12px 28px;
+    border-radius: 30px;
+
+    font-weight: 600;
+    font-size: 18px;
+
+    border: none;
+    cursor: pointer;
+
+    background: linear-gradient(90deg, #ff8c00, #ffa500);
+    color: #fff;
+
+    text-decoration: none;          /* убираем подчёркивание */
+
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* hover эффект (как в третьем блоке) */
+.second-section-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-decoration: none;
+}
+
+/* защита от underline в любых состояниях */
+.second-section-button:visited,
+.second-section-button:active,
+.second-section-button:focus {
+    text-decoration: none;
+}
+
+
+/* =========================================================
    Второй блок мобильный адаптив
    ========================================================= */
 @media (max-width: 768px) {
@@ -495,7 +516,7 @@ button {
 
 /* Кнопка третьего блока */
 .third-section-button {
-    display: block;          /* Чтобы margin-auto сработал */
+    display: inline-block;          /* Чтобы margin-auto сработал */
     margin: 0 auto;          /* Центрируем кнопку по горизонтали */
     padding: 12px 28px;
     border-radius: 30px;
@@ -512,6 +533,12 @@ button {
 .third-section-button:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+/* защита от underline в любых состояниях */
+.third-section-button:visited,
+.third-section-button:active,
+.third-section-button:focus {
+    text-decoration: none;
 }
 
 /* =========================================================
@@ -566,8 +593,10 @@ button {
     .third-section-button {
         margin: 20px auto 0;
         display: block;
+        text-align: center;
     }
 }
+
 
 
 /* =========================================================

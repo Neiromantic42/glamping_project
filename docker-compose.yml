@@ -1,11 +1,31 @@
+version: "3.9"
+
 services:
   web:
     build: .
     container_name: glamping_web
-    ports:
-      - "8000:8000"
+    command: gunicorn glamping_project.wsgi:application --bind 0.0.0.0:8000
     env_file:
       - .env
     restart: unless-stopped
     volumes:
       - ./db.sqlite3:/app/db.sqlite3
+      - media_volume:/app/media
+      - static_volume:/app/staticfiles   # ← ДОБАВИЛИ
+
+  nginx:
+    image: nginx:latest
+    container_name: glamping_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - media_volume:/app/media
+      - static_volume:/app/staticfiles   # ← ДОБАВИЛИ
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  media_volume:
+  static_volume:

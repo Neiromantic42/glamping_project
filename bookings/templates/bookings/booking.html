@@ -30,6 +30,7 @@
             <p>Забронируйте ваш идеальный отдых</p>
         </div>
 
+
         <!-- Форма -->
         <form method="POST" action="{% url 'bookings:booking' %}" class="booking-form">
             {% csrf_token %}
@@ -117,6 +118,22 @@
 
             <!-- Кнопка -->
             <button type="submit" class="btn-book">Забронировать</button>
+
+            {% if form.errors %}
+                <div class="form-error-block">
+
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>{{ field.label }}: {{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+
+                </div>
+            {% endif %}
 
             <!-- Ссылка назад -->
             <a href="{% url 'glamping:home_page' %}" class="btn-back">← Вернуться на главную</a>
@@ -208,6 +225,6 @@
         });
 
 </script>
-
 </body>
 </html>
+

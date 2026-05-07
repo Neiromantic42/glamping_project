@@ -36,3 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// Логика закрытия мобильного меню по клику по любой ссылке
+document.querySelectorAll(".mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("mobileMenu").classList.remove("open");
+        document.getElementById("burger").classList.remove("active");
+    });
+});

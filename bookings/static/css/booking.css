@@ -236,3 +236,66 @@ body {
         font-size: 16px;
     }
 }
+
+/* =========================================================
+   Ошибка пересечения дат
+   ========================================================= */
+.form-error-block {
+    width: 100%;
+
+    margin-top: 16px;
+    padding: 14px 16px;
+
+    border-radius: 16px;
+
+    /* glass effect */
+    background: rgba(255, 120, 160, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* border glow */
+    border: 1px solid rgba(255, 120, 160, 0.35);
+
+    /* text */
+    color: #ffe6ef;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    box-shadow: 0 8px 24px rgba(255, 80, 120, 0.15);
+
+    animation: errorFadeIn 0.25s ease-out;
+}
+
+/* =========================================================
+   анимация появления (очень улучшает UX)
+   ========================================================= */
+@keyframes errorFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* =========================================================
+   стили для текста ошибок
+   ========================================================= */
+.form-error-block p {
+    margin: 0;
+    padding: 4px 0;
+
+    color: #ffe6ef;
+}
+/* =========================================================
+   мобильный адаптив ошибки
+   ========================================================= */
+@media (max-width: 600px) {
+    .form-error-block {
+        font-size: 13px;
+        padding: 12px 14px;
+        border-radius: 14px;
+    }
+}

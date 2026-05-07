@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея — /\ Кама ГЛ</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lightbox CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+</head>
+<body>
+
+    <!-- Фон с overlay -->
+    <div class="gallery-bg"></div>
+    <div class="overlay"></div>
+
+    <!-- Шапка -->
+    <header class="gallery-header">
+        <a href="{% url 'glamping:home_page' %}" class="back-link">← Назад</a>
+        <h1>/\ Кама ГЛ</h1>
+        <span class="photo-count">{{ images.count }} фото</span>
+    </header>
+
+    <!-- Контейнер галереи -->
+    <div class="gallery-container">
+
+        <!-- Masonry сетка -->
+        <div class="gallery-grid">
+            {% for image in images %}
+                <div class="gallery-item {{ image.orientation }}">
+                    <a
+                        href="{{ image.image.url }}"
+                        data-lightbox="glamping-gallery"
+                        data-title="{{ image.title }}"
+                    >
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.title }}"
+                            loading="lazy"
+                        >
+                        {% if image.title %}
+                            <div class="image-caption">
+                                <span>{{ image.title }}</span>
+                            </div>
+                        {% endif %}
+                    </a>
+                </div>
+            {% empty %}
+                <div class="no-images">
+                    <p>Фотографии скоро появятся</p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <!-- jQuery (для Lightbox) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Lightbox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+
+    <script>
+        // Настройки Lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'albumLabel': 'Фото %1 из %2'
+        });
+    </script>
+
+</body>
+</html>
