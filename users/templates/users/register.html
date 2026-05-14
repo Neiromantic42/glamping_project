@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Регистрация — /\ Кама ГЛ</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+
+<!-- Фон с overlay -->
+<div class="register-bg"></div>
+<div class="overlay"></div>
+
+<!-- Контейнер регистрации -->
+<div class="register-container">
+
+    <!-- Карточка формы -->
+    <div class="register-card">
+
+        <!-- Заголовок -->
+        <div class="register-header">
+            <h1>/\ Кама ГЛ</h1>
+            <p>Создайте аккаунт для бронирования</p>
+        </div>
+
+        <!-- Форма регистрации -->
+        <form method="POST" action="{% url 'users:register' %}" class="register-form">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username">Имя пользователя <span class="required">*</span></label>
+                <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Введите имя пользователя"
+                        required
+                        autocomplete="username"
+                >
+                {% if form.username.errors %}
+                    <div class="field-error">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@mail.ru"
+                        required
+                        autocomplete="email"
+                >
+            </div>
+
+            <!-- Password1 -->
+            <div class="form-group">
+                <label for="password">Пароль <span class="required">*</span></label>
+                <input
+                        type="password"
+                        id="password"
+                        name="password1"
+                        placeholder="Минимум 8 символов"
+                        required
+                        autocomplete="new-password"
+                        minlength="8"
+                >
+                {% if form.password1.errors %}
+                    <div class="field-error">
+                        {% for error in form.password1.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Password2 -->
+            <div class="form-group">
+                <label for="password_confirm">Подтвердите пароль <span class="required">*</span></label>
+                <input
+                        type="password"
+                        id="password_confirm"
+                        name="password2"
+                        placeholder="Повторите пароль"
+                        required
+                        autocomplete="new-password"
+                        minlength="8"
+                >
+                {% if form.password2.errors %}
+                    <div class="field-error">
+                        {% for error in form.password2.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Кнопка регистрации -->
+            <button type="submit" class="btn-register">
+                Зарегистрироваться
+            </button>
+
+            <!-- Ссылка на вход -->
+            <div class="login-link">
+                Уже есть аккаунт? <a href="{% url 'users:login' %}">Войти</a>
+            </div>
+
+            <!-- Ссылка назад -->
+            <a href="{% url 'glamping:home_page' %}" class="btn-back">← Вернуться на главную</a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -22,7 +22,11 @@ class Profile(models.Model):
         verbose_name="Телефон пользователя"
     )
     # Отображаемое имя в профиле
-    display_name = models.CharField(max_length=50, blank=True)
+    display_name = models.CharField(
+        max_length=50,
+        blank=True,
+        verbose_name="Отображаемое в профиле имя"
+    )
     # Дата создания профиля
     created_at = models.DateTimeField(auto_now_add=True)
 

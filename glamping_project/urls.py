@@ -26,7 +26,9 @@ urlpatterns = [
     path('', include('glamping.urls')), # теперь главная страница берётся из приложения glamping
     path('booking/', include('bookings.urls')), # подключаем url бронирования глемпинга все страницы
     path("payment/", include('payments.urls')), # подключаем все пути приложения payments
-    path("gallery/", include('gallery.urls', namespace="gallery")),
+    path("gallery/", include('gallery.urls', namespace="gallery")), # подключаем все пути приложения галерея
+    path('users/', include('users.urls')), # подключаем все пути юзеры,
+    path('accounts/', include('accounts.urls')), # подключаем все пути приложения профиля
 ]
 
 if settings.DEBUG:
