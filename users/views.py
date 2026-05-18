@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login as auth_login, logout
+from users.forms import CustomUserCreationForm
 import logging
+
+
 
 logger = logging.getLogger(__name__)
 
@@ -13,17 +15,18 @@ def register(request):
     Страница регистрации
     """
     if request.method == 'POST':
-        # username = request.POST.get('username')
-        # email = request.POST.get('email')
-        # password = request.POST.get('password')
-        # password_confirm = request.POST.get('password_confirm')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password1')
+        password_confirm = request.POST.get('password2')
 
         # TODO: Логика регистрации
         # Проверка паролей, создание пользователя, отправка email
-        form = UserCreationForm(request.POST) # Создаем дефолтную форму и передаем данные запроса
+        form = CustomUserCreationForm(request.POST) # Создаем дефолтную форму и передаем данные запроса
         logger.info(f"Ошибка формы: {form.errors}")
         if form.is_valid():
             user = form.save()
+            auth_login(request, user)
             messages.success(request, f'Добро пожаловать, {user.username}!')
             return redirect('glamping:home_page')
         else:
@@ -54,6 +57,16 @@ def login(request):
             return render(request, 'users/login.html')
 
     return render(request, 'users/login.html')
+
+
+def logout_view(request):
+    """
+    Функция для выхода пользователя из сессии
+    """
+    if request.method == 'POST':
+        logout(request=request)
+    return redirect('glamping:home_page')
+
 
 
 def password_reset(request):

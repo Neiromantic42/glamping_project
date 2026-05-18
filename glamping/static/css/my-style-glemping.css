@@ -1134,3 +1134,29 @@ button {
         padding: 30px 16px;
     }
 }
+
+/* кнопка "Выйти" как ссылка в header-links */
+.link-button {
+    background: none;
+    border: none;
+
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    font-weight: 500;
+
+    font-family: inherit;
+    cursor: pointer;
+
+    padding: 0;
+    margin: 0;
+
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
+}
+
+/* hover — как у ссылок */
+.link-button:hover {
+    color: #fff;
+    text-decoration: none;
+}

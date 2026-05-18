@@ -13,81 +13,89 @@
 </head>
 <body>
 
-    <!-- Фон с overlay -->
-    <div class="profile-bg"></div>
-    <div class="overlay"></div>
+<!-- Фон с overlay -->
+<div class="profile-bg"></div>
+<div class="overlay"></div>
 
-    <!-- Контейнер профиля -->
-    <div class="profile-container">
+<!-- Контейнер профиля -->
+<div class="profile-container">
 
-        <!-- Карточка профиля -->
-        <div class="profile-card">
+    <!-- Карточка профиля -->
+    <div class="profile-card">
 
-            <!-- Заголовок -->
-            <div class="profile-header">
-                <h1>Мой профиль</h1>
-                <p>Управление вашими данными</p>
-            </div>
+        <!-- Заголовок -->
+        <div class="profile-header">
+            <h1>Мой профиль</h1>
+            <p>Управление вашими данными</p>
+        </div>
 
-            <!-- Форма профиля -->
-            <form method="POST" action="{% url 'accounts:profile' %}" enctype="multipart/form-data" class="profile-form">
-                {% csrf_token %}
+        <!-- Форма профиля -->
+        <form method="POST" action="{% url 'accounts:profile' %}" enctype="multipart/form-data" class="profile-form">
+            {% csrf_token %}
 
-                <!-- Аватар -->
-                <div class="avatar-section">
-                    <div class="avatar-container">
-                        {% if profile.avatar %}
-                            <img src="{{ profile.avatar.url }}" alt="Аватар" class="avatar-img" id="avatarPreview">
-                        {% else %}
-                            <img src="{% static 'img/default-avatar.png' %}" alt="Аватар" class="avatar-img" id="avatarPreview">
-                        {% endif %}
-                        <div class="avatar-overlay">
-                            <label for="avatar" class="avatar-change">
-                                📷 Изменить
-                            </label>
-                        </div>
+            <!-- Аватар -->
+            <div class="avatar-section">
+                <div class="avatar-container">
+                    {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" alt="Аватар" class="avatar-img" id="avatarPreview">
+                    {% else %}
+                        <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"
+                             class="avatar-img" id="avatarPreview">
+                            <circle cx="60" cy="60" r="60" fill="#ff8c00"/>
+                            <text x="50%" y="50%" text-anchor="middle" dy=".3em"
+                                  font-size="48" fill="#fff" font-family="Arial">
+                                {{ user.username.0|upper }}
+                            </text>
+                        </svg>
+                        {#                            <img src="{% static 'img/default-avatar.png' %}" alt="Аватар" class="avatar-img" id="avatarPreview">#}
+                    {% endif %}
+                    <div class="avatar-overlay">
+                        <label for="avatar" class="avatar-change">
+                            📷 Изменить
+                        </label>
                     </div>
-                    <input
+                </div>
+                <input
                         type="file"
                         id="avatar"
                         name="avatar"
                         accept="image/*"
                         hidden
-                    >
-                    <p class="avatar-hint">JPG, PNG или GIF (макс. 5MB)</p>
-                </div>
+                >
+                <p class="avatar-hint">JPG, PNG или GIF (макс. 5MB)</p>
+            </div>
 
-                <!-- Username (readonly) -->
-                <div class="form-group">
-                    <label for="username">Имя пользователя</label>
-                    <input
+            <!-- Username (readonly) -->
+            <div class="form-group">
+                <label for="username">Имя пользователя</label>
+                <input
                         type="text"
                         id="username"
                         name="username"
                         value="{{ user.username }}"
                         readonly
                         disabled
-                    >
-                    <p class="field-hint">Имя пользователя нельзя изменить</p>
-                </div>
+                >
+                <p class="field-hint">Имя пользователя нельзя изменить</p>
+            </div>
 
-                <!-- Display Name (editable) -->
-                <div class="form-group">
-                    <label for="display_name">Отображаемое имя</label>
-                    <input
+            <!-- Display Name (editable) -->
+            <div class="form-group">
+                <label for="display_name">Отображаемое имя</label>
+                <input
                         type="text"
                         id="display_name"
                         name="display_name"
                         value="{{ profile.display_name }}"
                         placeholder="Как к вам обращаться?"
                         maxlength="50"
-                    >
-                </div>
+                >
+            </div>
 
-                <!-- Email (editable) -->
-                <div class="form-group">
-                    <label for="email">Email <span class="required">*</span></label>
-                    <input
+            <!-- Email (editable) -->
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input
                         type="email"
                         id="email"
                         name="email"
@@ -95,63 +103,63 @@
                         placeholder="example@mail.ru"
                         required
                         autocomplete="email"
-                    >
-                </div>
+                >
+            </div>
 
-                <!-- Phone (editable) -->
-                <div class="form-group">
-                    <label for="phone">Телефон</label>
-                    <input
+            <!-- Phone (editable) -->
+            <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input
                         type="tel"
                         id="phone"
                         name="phone"
                         value="{{ profile.phone }}"
                         placeholder="+7 (999) 123-45-67"
                         autocomplete="tel"
-                    >
-                    <p class="field-hint">Для связи при бронировании</p>
+                >
+                <p class="field-hint">Для связи при бронировании</p>
+            </div>
+
+            <!-- Дата регистрации (readonly, информация) -->
+            <div class="info-section">
+                <div class="info-item">
+                    <span class="info-label">Дата регистрации:</span>
+                    <span class="info-value">{{ profile.created_at|date:"d.m.Y" }}</span>
                 </div>
+            </div>
 
-                <!-- Дата регистрации (readonly, информация) -->
-                <div class="info-section">
-                    <div class="info-item">
-                        <span class="info-label">Дата регистрации:</span>
-                        <span class="info-value">{{ profile.created_at|date:"d.m.Y" }}</span>
-                    </div>
-                </div>
+            <!-- Кнопки -->
+            <div class="button-group">
+                <button type="submit" class="btn-save">
+                    ✓ Сохранить изменения
+                </button>
+                <a href="{% url 'glamping:home_page' %}" class="btn-back-inline">
+                    ← Вернуться на главную
+                </a>
+            </div>
 
-                <!-- Кнопки -->
-                <div class="button-group">
-                    <button type="submit" class="btn-save">
-                        ✓ Сохранить изменения
-                    </button>
-                    <a href="{% url 'glamping:home_page' %}" class="btn-back-inline">
-                        ← Вернуться на главную
-                    </a>
-                </div>
-
-            </form>
-
-        </div>
+        </form>
 
     </div>
 
-    <!-- JavaScript для превью аватара -->
-    <script>
-        const avatarInput = document.getElementById('avatar');
-        const avatarPreview = document.getElementById('avatarPreview');
+</div>
 
-        avatarInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    avatarPreview.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
+<!-- JavaScript для превью аватара -->
+<script>
+    const avatarInput = document.getElementById('avatar');
+    const avatarPreview = document.getElementById('avatarPreview');
+
+    avatarInput.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                avatarPreview.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 </body>
 </html>

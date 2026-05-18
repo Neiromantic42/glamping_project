@@ -29,6 +29,7 @@ urlpatterns = [
     path("gallery/", include('gallery.urls', namespace="gallery")), # подключаем все пути приложения галерея
     path('users/', include('users.urls')), # подключаем все пути юзеры,
     path('accounts/', include('accounts.urls')), # подключаем все пути приложения профиля
+    path('reviews/', include('reviews.urls')), # подключаем все пути приложения отзывов
 ]
 
 if settings.DEBUG:
