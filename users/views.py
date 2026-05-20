@@ -51,7 +51,7 @@ def login(request):
             auth_login(request, user)
             if not remember_me:
                 request.session.set_expiry(0)  # Сессия закрывается при закрытии браузера
-            return redirect('glamping:home_page')
+            return redirect('reviews:reviews')
         else:
             messages.error(request, 'Неверный логин или пароль')
             return render(request, 'users/login.html')

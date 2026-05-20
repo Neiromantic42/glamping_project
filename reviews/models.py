@@ -67,6 +67,12 @@ class Review(models.Model):
     def stars(self):
         return "★" * self.rating + "☆" * (5 - self.rating)
 
+    @property
+    def display_name(self):
+        if self.user:
+            return self.user.username
+        return self.author_name or "Гость"
+
 
 
 class ReviewImage(models.Model):

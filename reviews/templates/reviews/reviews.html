@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Отзывы — /\ Кама ГЛ</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lightbox CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+</head>
+<body>
+
+<!-- Фон с overlay -->
+<div class="reviews-bg"></div>
+<div class="overlay"></div>
+
+<!-- Контейнер страницы -->
+<div class="reviews-container">
+
+    <!-- Шапка -->
+    <header class="reviews-header">
+        <a href="{% url 'glamping:home_page' %}" class="back-link">← Назад</a>
+        <div class="header-content">
+            <h1>Отзывы гостей</h1>
+            <p class="reviews-count">{{ reviews.count }} {{ reviews.count|pluralize:"отзыв,отзыва,отзывов" }}</p>
+        </div>
+    </header>
+
+    <!-- Кнопка "Оставить отзыв" -->
+    <div class="add-review-section">
+
+        {% if permission == "can_review" %}
+            <button class="btn-add-review" id="openReviewForm">
+                ✍️ Оставить отзыв
+            </button>
+
+        {% elif permission == "not_auth" %}
+            <a href="{% url 'users:login' %}?next={{ request.path }}" class="btn-add-review">
+                ✍️ Войдите, чтобы оставить отзыв
+            </a>
+
+        {% elif permission == "no_booking" %}
+            <div class="btn-add-review">
+                ❌ Отзыв доступен только после проживания
+            </div>
+
+        {% elif permission == "expired" %}
+            <div class="btn-add-review">
+                ⏳ Срок для отзыва (14 дней) истёк
+            </div>
+
+        {% elif permission == "already_reviewed" %}
+            <div class="btn-add-review">
+                ☑️ Вы уже оставили отзыв
+            </div>
+        {% endif %}
+
+    </div>
+
+    <!-- Форма добавления отзыва (скрыта по умолчанию) -->
+    {% if user.is_authenticated %}
+        <div class="review-form-card" id="reviewFormCard" style="display: none;">
+            <div class="form-header">
+                <h2>Ваш отзыв</h2>
+                <button class="close-form" id="closeReviewForm">✕</button>
+            </div>
+
+            <form method="POST" action="{% url 'reviews:add_review' %}" enctype="multipart/form-data" id="reviewForm">
+                {% csrf_token %}
+
+                <!-- Рейтинг -->
+                <div class="form-group">
+                    <label>Оценка <span class="required">*</span></label>
+                    <div class="star-rating">
+                        <input type="radio" name="rating" value="5" id="star5" required>
+                        <label for="star5">★</label>
+                        <input type="radio" name="rating" value="4" id="star4">
+                        <label for="star4">★</label>
+                        <input type="radio" name="rating" value="3" id="star3">
+                        <label for="star3">★</label>
+                        <input type="radio" name="rating" value="2" id="star2">
+                        <label for="star2">★</label>
+                        <input type="radio" name="rating" value="1" id="star1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+
+                <!-- Текст отзыва -->
+                <div class="form-group">
+                    <label for="text">Ваш отзыв <span class="required">*</span></label>
+                    <textarea
+                            id="text"
+                            name="text"
+                            placeholder="Расскажите о вашем опыте..."
+                            required
+                            maxlength="3000"
+                            rows="6"
+                    ></textarea>
+                    <p class="char-counter"><span id="charCount">0</span>/3000</p>
+                </div>
+
+                <!-- Фото -->
+                <div class="form-group">
+                    <label for="images">Фотографии (необязательно)</label>
+                    <input
+                            type="file"
+                            id="images"
+                            name="images"
+                            accept="image/*"
+                            multiple
+                    >
+                    <div class="image-previews" id="imagePreviews"></div>
+                </div>
+
+                <!-- Кнопка отправки -->
+                <button type="submit" class="btn-submit">
+                    Отправить отзыв
+                </button>
+            </form>
+        </div>
+    {% endif %}
+
+    <!-- Список отзывов -->
+    <div class="reviews-list">
+        {% if reviews %}
+            {% for review in reviews %}
+                <article class="review-card">
+
+                    <!-- Шапка отзыва -->
+                    <div class="review-header">
+                        <div class="author-info">
+                            <!-- Аватар -->
+                            <div class="avatar">
+                                {% if review.user and review.user.profile.avatar %}
+                                    <img src="{{ review.user.profile.avatar.url }}" alt="{{ review.user.username }}">
+                                {% elif review.author_avatar %}
+                                    <img src="{{ review.author_avatar.url }}" alt="{{ review.author_name }}">
+                                {% else %}
+                                    <div class="avatar-placeholder">
+                                        {{ review.display_name|first|upper }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Имя и дата -->
+                            <div class="author-details">
+                                <h3 class="author-name">
+                                    {{ review.display_name }}
+                                </h3>
+                                <p class="review-date">{{ review.created_at|date:"d F Y" }}</p>
+                                <span class="stay-badge">Проживание состоялось</span>
+                            </div>
+                        </div>
+
+                        <!-- Рейтинг -->
+                        <div class="review-rating">
+                            <div class="stars">{{ review.stars }}</div>
+                        </div>
+                    </div>
+
+                    <!-- Галерея изображений -->
+                    {% if review.images.all %}
+                        <div class="review-gallery">
+                            {% for image in review.images.all %}
+                                <a href="{{ image.image.url }}" data-lightbox="review-{{ review.id }}">
+                                    <img src="{{ image.image.url }}" alt="Фото" loading="lazy">
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Текст отзыва -->
+                    <div class="review-text">
+                        <p class="text-content" data-full="{{ review.text }}">
+                            {% if review.text|length > 300 %}
+                                {{ review.text|slice:":300" }}...
+                            {% else %}
+                                {{ review.text }}
+                            {% endif %}
+                        </p>
+                        {% if review.text|length > 300 %}
+                            <button class="btn-show-more">Показать целиком</button>
+                        {% endif %}
+                    </div>
+
+                </article>
+            {% endfor %}
+        {% else %}
+            <!-- Empty state -->
+            <div class="empty-state">
+                <div class="empty-icon">📝</div>
+                <h2>Пока нет отзывов</h2>
+                <p>Станьте первым, кто поделится впечатлениями!</p>
+                {% if user.is_authenticated %}
+                    <button class="btn-add-review" onclick="document.getElementById('openReviewForm').click()">
+                        Оставить отзыв
+                    </button>
+                {% else %}
+                    <a href="{% url 'users:login' %}" class="btn-add-review">
+                        Войти и оставить отзыв
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+<!-- jQuery (для Lightbox) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Lightbox JS -->
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+
+<script src="{% static 'js/reviews.js' %}"></script>
+
+</body>
+</html>

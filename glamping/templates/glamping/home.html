@@ -49,7 +49,7 @@
                 <a href="/users/login/">Войти</a>
                 <a href="/users/register/">Регистрация</a>
             {% endif %}
-            <a href="#first">Отзывы</a>
+            <a href="{% url 'reviews:reviews' %}">Отзывы</a>
             <a href="{% url 'gallery:gallery' %}">Фото глемпинга</a>
             <a href="#facilities">Удобства</a>
             <a href="#contacts">Контакты</a>
@@ -90,7 +90,7 @@
             <a href="/users/register/">Регистрация</a>
         {% endif %}
 
-        <a href="#first">Отзывы</a>
+        <a href="{% url 'reviews:reviews' %}">Отзывы</a>
         <a href="{% url 'gallery:gallery' %}">Фото глемпинга</a>
         <a href="#facilities">Удобства</a>
         <a href="#contacts">Контакты</a>
@@ -126,7 +126,11 @@
             <span>📍 400 м до Камы</span>
             <span>🔥 Мангал и костёр</span>
             <span>📶 Wi-Fi 5G</span>
-            <span>⭐ 4.8 · 17 отзыва</span>
+            <span class="hero-tags-link">
+                <a href="{% url 'reviews:reviews' %}">
+                    ⭐ {{ avg_rating }} · {{ reviews_count }} отзыв{{ reviews_count|pluralize:"а,ов,ов" }}
+                </a>
+            </span>
             <span>🏕 До 4 гостей</span>
             <span>🎥 Видеонаблюдение</span> <!-- Добавили -->
         </div>

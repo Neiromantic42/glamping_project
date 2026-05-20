@@ -314,6 +314,32 @@ section {
     font-size: 16px;
     white-space: nowrap;
 }
+.hero-tags-link a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+/* чтобы ссылка выглядела как обычный тег */
+.hero-tags-link {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 16px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* hover эффект как у UI-кнопки */
+.hero-tags-link:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+}
 
 .hero-info {
     display: flex;
