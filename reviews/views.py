@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Review, ReviewImage
 from reviews.services.reviews_service import get_review_permission
+from reviews.services.sending_a_letter_email import get_a_letter_send
 import logging
 
 logger = logging.getLogger(__name__)
@@ -47,13 +48,6 @@ def add_review(request):
             messages.error(request, "Заполни текст и рейтинг")
             return redirect('reviews:reviews')
 
-
-        # email = getattr(request.user, "email", None)
-        # logger.info(f"Email for user: {email}")
-        # if not can_user_review_booking(email=email):
-        #     messages.error(request, "Вы можете оставить отзыв только в течение 14 дней после проживания")
-        #     return redirect('reviews:reviews')
-
         try:
             review = Review.objects.create(
                 user=request.user,
@@ -83,6 +77,12 @@ def add_review(request):
 
         messages.success(request, 'Спасибо за ваш отзыв!')
         logger.info("=== ADD REVIEW SUCCESS ===")
+
+        # функция отправки письма о создании отзыва пользователем
+        try:
+            get_a_letter_send(review=review)
+        except Exception:
+            logger.exception("Ошибка отправки письма о отзыве")
 
         return redirect('reviews:reviews')
 

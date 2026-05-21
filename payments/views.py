@@ -1,9 +1,15 @@
 from decimal import Decimal
-from payments.services.payment_notice import notify_owner_payment_attempt
+from payments.services.payment_notice import (
+    notify_owner_payment_attempt,
+    send_booking_confirmation_email
+)
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from bookings.models import Booking
 from glamping.models import Glamping
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def payment(request, booking_id: int):
@@ -21,10 +27,14 @@ def payment(request, booking_id: int):
         # Пользователь нажал "Я оплатил"
         # TODO: Изменить статус на PENDING_PAYMENT
         messages.success(request, 'Спасибо! Мы проверяем платеж.')
-        notify_owner_payment_attempt(booking, nights, total_price, prepayment)
+        try:
+            notify_owner_payment_attempt(booking, nights, total_price, prepayment)
+            send_booking_confirmation_email(booking, nights, total_price, prepayment)
+        except Exception as e:
+            logger.info(f"Ошибка отправки письма: {e}")
+
         return redirect('glamping:home_page')
 
-    # Пока заглушка с тестовыми данными
     context = {
         'booking': {
             'name': booking.name,
