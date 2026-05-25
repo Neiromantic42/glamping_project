@@ -28,6 +28,6 @@ def get_a_letter_send(review):
         subject=subject,
         message=message,
         from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[settings.OWNER_EMAIL],
+        recipient_list=settings.OWNER_EMAIL,
         fail_silently=False
     )

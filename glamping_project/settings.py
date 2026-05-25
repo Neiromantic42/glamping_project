@@ -176,7 +176,10 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = "afrika8759116@gmail.com"
 EMAIL_HOST_PASSWORD = "ikyr vves vdyo syhk"
-OWNER_EMAIL = "t_afrika_777ne@mail.ru"
+OWNER_EMAIL = [
+    "Ialexse@yandex.ru",
+    "t_afrika_777ne@mail.ru",
+]
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

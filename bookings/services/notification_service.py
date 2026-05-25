@@ -39,6 +39,6 @@ def notify_owner_new_booking(booking):
         subject=subject,
         message=message,
         from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[settings.OWNER_EMAIL],
+        recipient_list=settings.OWNER_EMAIL,
         fail_silently=False,
     )

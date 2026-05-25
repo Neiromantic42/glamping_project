@@ -42,7 +42,7 @@ def notify_owner_payment_attempt(booking, nights, total_price, prepayment):
         subject=subject,
         message=message,
         from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[settings.OWNER_EMAIL],
+        recipient_list=settings.OWNER_EMAIL,
         fail_silently=False,
     )
 
