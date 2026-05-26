@@ -13,7 +13,7 @@ def notify_owner_new_booking(booking):
     Уведомление владельца о новой заявке на бронирование
     """
 
-    admin_url = f"http://127.0.0.1:8000/admin/bookings/booking/{booking.id}/change/"
+    admin_url = f"https://kama-glamping.ru/admin/bookings/booking/{booking.id}/change/"
 
     subject = "Новая заявка на бронирование"
 

@@ -6,6 +6,7 @@ def get_a_letter_send(review):
     """
     Уведомление владельца о новом отзыве
     """
+    reviews_url = "https://kama-glamping.ru/reviews/"
     subject = "/\ Кама ГЛ Пользователь оставил отзыв /\ Кама ГЛ !"
 
     user_name = (
@@ -19,8 +20,10 @@ def get_a_letter_send(review):
     Email: {review.user.email if review.user else "__"}
     Рейтинг: {review.rating}
     
-    Текст:
+    Текст:\n
     {review.text}
+    
+    Открыть комментарии на /\ Кама ГЛ: {reviews_url}
     """
 
 
