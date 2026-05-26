@@ -23,3 +23,6 @@ Thumbs.db
 *.HEIC
 EOF
 .env
+
+# локальный nginx не пушим он для локальной разработки
+nginx/nginx_local.conf
