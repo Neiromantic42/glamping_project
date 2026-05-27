@@ -21,6 +21,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.sitemaps.views import sitemap
+from glamping.sitemap import StaticViewSitemap
+
+sitemaps = {
+    "static": StaticViewSitemap,
+}
+
+
+
+
 urlpatterns = [
     path("admin/", admin.site.urls), # админка
     path('', include('glamping.urls')), # теперь главная страница берётся из приложения glamping
@@ -30,6 +40,10 @@ urlpatterns = [
     path('users/', include('users.urls')), # подключаем все пути юзеры,
     path('accounts/', include('accounts.urls')), # подключаем все пути приложения профиля
     path('reviews/', include('reviews.urls')), # подключаем все пути приложения отзывов
+]
+
+urlpatterns += [
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}),
 ]
 
 if settings.DEBUG:

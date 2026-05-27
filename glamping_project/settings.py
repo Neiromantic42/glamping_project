@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY") # Настройка получения секретного ключа для продакшена
-# SECRET_KEY = "django-insecure-#jagw_s8mzh%@%%-&l+5_rw=i*7k9u&3ui9lv@53g34vqw^d&*"
+
+# SECRET_KEY = "django-insecure-#jagw_s8mzh%@%%-&l+5_rw=i*7k9u&3ui9lv@53g34vqw^d&*" # Настройка получения секретного ключа для локальной разработки
 # SECURITY WARNING: don't run with debug turned on in production!
 # Настройка дебак в продакшен
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
@@ -57,6 +58,8 @@ INSTALLED_APPS = [
     "users", # приложение юзерс для регистрации аутентификации пользователя
     "reviews", # приложение для отзывово
 ]
+
+INSTALLED_APPS += ["django.contrib.sitemaps"] # Включаем sitemap в Django
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

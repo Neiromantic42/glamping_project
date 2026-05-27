@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /users/
+Disallow: /payment/
+Disallow: /static/
+Disallow: /media/
+
+Allow: /
+
+Sitemap: https://kama-glamping.ru/sitemap.xml
