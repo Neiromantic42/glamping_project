@@ -20,16 +20,37 @@ def payment(request, booking_id: int):
     booking = get_object_or_404(Booking, id=booking_id)
     glamping = get_object_or_404(Glamping, id=1)
     nights = (booking.check_out_date - booking.check_in_date).days
-    total_price = nights * glamping.price_per_night
-    prepayment = total_price * Decimal(0.5)
+    extra_guests_count = (booking.guests_count - 2)
+    guest_fee = extra_guests_count * glamping.extra_guest_price
+
+    if booking.guests_count <=2:
+        total_price = nights * glamping.price_per_night
+        prepayment = total_price * Decimal(0.5)
+    else:
+        total_price = (nights * glamping.price_per_night) + ((booking.guests_count - 2) * glamping.extra_guest_price)
+        prepayment = total_price * Decimal(0.5)
 
     if request.method == 'POST':
         # Пользователь нажал "Я оплатил"
         # TODO: Изменить статус на PENDING_PAYMENT
         messages.success(request, 'Спасибо! Мы проверяем платеж.')
         try:
-            notify_owner_payment_attempt(booking, nights, total_price, prepayment)
-            send_booking_confirmation_email(booking, nights, total_price, prepayment)
+            notify_owner_payment_attempt(
+                booking,
+                nights,
+                total_price,
+                prepayment,
+                extra_guests_count,
+                guest_fee,
+            )
+            send_booking_confirmation_email(
+                booking,
+                nights,
+                total_price,
+                prepayment,
+                extra_guests_count,
+                guest_fee,
+            )
         except Exception as e:
             logger.info(f"Ошибка отправки письма: {e}")
 
@@ -43,6 +64,9 @@ def payment(request, booking_id: int):
             'check_in': booking.check_in_date,
             'check_out': booking.check_out_date,
             'guests_count': booking.guests_count,
+            'extra_guests_count': extra_guests_count,
+            'extra_guest_price': glamping.extra_guest_price,
+            'guest_fee': guest_fee,
             'nights': nights,
             'total_price': total_price,
             'prepayment': prepayment,

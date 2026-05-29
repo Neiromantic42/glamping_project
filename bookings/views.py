@@ -6,7 +6,6 @@ from bookings.forms import BookingForm
 from bookings.services.booking_service import is_dates_available, create_booking
 from glamping.models import Glamping
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -41,7 +40,12 @@ def booking(request: HttpRequest) -> HttpResponse:
 
     elif request.method == "GET":
         form = BookingForm()
-        return render(request, 'bookings/booking.html', {"form": form})
+        glamping = get_object_or_404(Glamping, id=1)
+        additional_price = glamping.extra_guest_price
+
+        return render(request, 'bookings/booking.html',
+                      {"form": form, "extra_guest_price": additional_price}
+                      )
 
 
 def get_dates(request: HttpRequest) -> JsonResponse:
@@ -50,7 +54,7 @@ def get_dates(request: HttpRequest) -> JsonResponse:
 
     В booking.html
     """
-    bookings = Booking.objects.filter(status="confirmed") # получаем все подтвержденные брони
+    bookings = Booking.objects.filter(status="confirmed")  # получаем все подтвержденные брони
     data = [
         {
             "from": i.check_in_date.isoformat(),

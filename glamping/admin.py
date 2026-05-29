@@ -30,7 +30,7 @@ class GlampingAdmin(admin.ModelAdmin):  # Создаем класс настро
             "fields": ("location", "address")
         }),
         ("Цены", {  # Блок для финансовых настроек
-            "fields": ("price_per_night", "deposit")
+            "fields": ("price_per_night", "deposit", "extra_guest_price")
         }),
         ("Проживание", {  # Блок настроек заезда и вместимости
             "fields": ("check_in_time", "check_out_time", "max_guests")

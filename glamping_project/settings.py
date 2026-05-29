@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY") # Настройка получения секретного ключа для продакшена
-
 # SECRET_KEY = "django-insecure-#jagw_s8mzh%@%%-&l+5_rw=i*7k9u&3ui9lv@53g34vqw^d&*" # Настройка получения секретного ключа для локальной разработки
+
 # SECURITY WARNING: don't run with debug turned on in production!
 # Настройка дебак в продакшен
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 # DEBUG = True # Настройка дебаг для локальной разработки
+
 # Настройка ALLOWED_HOSTS для локальной разработки
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",") if os.getenv("ALLOWED_HOSTS") else []
 # Настройка ALLOWED_HOSTS для продакшен версии

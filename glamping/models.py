@@ -45,6 +45,12 @@ class Glamping(models.Model):
         decimal_places=2,
         verbose_name="Цена за 1 ночь"
     )
+    extra_guest_price = models.DecimalField(
+        default=1200,
+        max_digits=8,
+        decimal_places=2,
+        verbose_name="Доплата за каждого гостя свыше 2"
+    )
     deposit = models.DecimalField(
         default=0,
         max_digits=8,

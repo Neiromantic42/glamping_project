@@ -7,8 +7,8 @@ STATUS_RU = {
     "canceled": "Отменена",
 }
 
-def notify_owner_payment_attempt(booking, nights, total_price, prepayment):
-    admin_url = f"http://127.0.0.1:8000/admin/bookings/booking/{booking.id}/change/"
+def notify_owner_payment_attempt(booking, nights, total_price, prepayment, extra_guests_count, guest_fee):
+    admin_url = f"https://kama-glamping.ru/admin/bookings/booking/{booking.id}/change/"
 
     subject = "Пользователь нажал 'Я оплатил'"
 
@@ -23,8 +23,11 @@ def notify_owner_payment_attempt(booking, nights, total_price, prepayment):
     Выезд: {booking.check_out_date}
 
     Гостей: {booking.guests_count}
+    Кол-во дополнительно оплачиваемых гостей: {extra_guests_count}
+    Стоимость дополнительно оплачиваемых гостей: {guest_fee} руб. 
     Ночей: {nights}
     Предоплата: {prepayment}
+    
     Общая стоимость: {total_price} руб.
     Остаток после предоплаты: {total_price - prepayment} руб.
     
@@ -48,7 +51,7 @@ def notify_owner_payment_attempt(booking, nights, total_price, prepayment):
 
 
 
-def send_booking_confirmation_email(booking, nights, total_price, prepayment):
+def send_booking_confirmation_email(booking, nights, total_price, prepayment, extra_guests_count, guest_fee):
     """
     Уведомление по Email клиента глемпинга об удачной брони!
     """
@@ -65,10 +68,14 @@ def send_booking_confirmation_email(booking, nights, total_price, prepayment):
     Дата заезда: {booking.check_in_date}
     Дата выезда: {booking.check_out_date}
     Кол-во гостей: {booking.guests_count}
+    Кол-во дополнительно оплачиваемых гостей: {extra_guests_count}
+    
     
     Ночей: {nights}
     Общая стоимость аренды {booking.glamping}: {total_price} руб.
+    
     Предоплата: {prepayment} руб.
+    Стоимость дополнительно оплачиваемых гостей: {guest_fee} руб. 
     Остаток после предоплаты: {total_price - prepayment} руб.
      
     
