@@ -129,6 +129,10 @@
         <p class="hero-subtitle">
             {{ glamping.description }}
         </p>
+        <!-- ⬇️  КНОПКА ЗАБРОНИРОВАТЬ ПЕРВОГО БЛОКА -->
+        <a href="{% url 'bookings:booking' %}" class="hero-booking-button">
+            Забронировать
+        </a>
         <!-- Адрес -->
         <p class="hero-address">
             {{ glamping.address }}
