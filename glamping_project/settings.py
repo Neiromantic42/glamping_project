@@ -156,6 +156,16 @@ STATICFILES_DIRS = [
     BASE_DIR / "glamping/static",
 ]
 
+STORAGES = {
+    "staticfiles": {
+        # ManifestStaticFilesStorage добавляет уникальный MD5-хеш к именам файлов (например, style.css -> style.551e1224.css).
+        # Это гарантирует, что браузеры пользователей мгновенно загрузят новые версии файлов после деплоя,
+        # полностью решая проблему инвалидации кэша (кэш-бастинг).
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    }
+}
+
+
 # Настройка логирования
 LOGGING = {
     'version': 1,
@@ -191,3 +201,4 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # === MEDIA (загрузки: фото, файлы, галерея) ===
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
