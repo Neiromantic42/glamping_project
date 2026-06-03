@@ -15,7 +15,7 @@ def is_dates_available(glamping, check_in, check_out):
     # Ищем существующие бронирования, которые могут помешать новой записи
     return not Booking.objects.filter(
         glamping=glamping, # Только для выбранного домика/глэмпинга
-        status__in=["pending", "confirmed"], # Только активные брони (не отмененные)
+        status__in=["confirmed"], # Только активные/подтвержденные брони (не отмененные)
         check_in_date__lt=check_out, # Старая бронь начинается раньше, чем вы уедете
         check_out_date__gt=check_in # Старая бронь заканчивается позже, чем вы приедете
     ).exists() # Если таких записей НЕТ, вернет True (свободно)

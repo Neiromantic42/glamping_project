@@ -16,7 +16,15 @@ class StaticViewSitemap(Sitemap):
             ("gallery:gallery", {}),
             ("bookings:booking", {}),
             ("reviews:reviews", {}),
+            ("info:about", {}),
         ]
 
     def location(self, item):
         return reverse(item[0], kwargs=item[1])
+
+    def priority(self, item):
+        if item[0] == "glamping:home_page":
+            return 1.0
+        if item[0] == "info:about":
+            return 0.6
+        return 0.8

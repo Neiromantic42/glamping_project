@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "accounts", # приложение аккаунт, для регистрации и отзывов
     "users", # приложение юзерс для регистрации аутентификации пользователя
     "reviews", # приложение для отзывово
+    "info" # приложение для страницы "О нас"
 ]
 
 INSTALLED_APPS += ["django.contrib.sitemaps"] # Включаем sitemap в Django
@@ -156,13 +157,22 @@ STATICFILES_DIRS = [
     BASE_DIR / "glamping/static",
 ]
 
+# STORAGES = {
+#     "staticfiles": {
+#         # ManifestStaticFilesStorage добавляет уникальный MD5-хеш к именам файлов (например, style.css -> style.551e1224.css).
+#         # Это гарантирует, что браузеры пользователей мгновенно загрузят новые версии файлов после деплоя,
+#         # полностью решая проблему инвалидации кэша (кэш-бастинг).
+#         "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+#     }
+# }
+
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
-        # ManifestStaticFilesStorage добавляет уникальный MD5-хеш к именам файлов (например, style.css -> style.551e1224.css).
-        # Это гарантирует, что браузеры пользователей мгновенно загрузят новые версии файлов после деплоя,
-        # полностью решая проблему инвалидации кэша (кэш-бастинг).
         "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
-    }
+    },
 }
 
 
