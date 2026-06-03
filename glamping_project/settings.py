@@ -158,22 +158,13 @@ STATICFILES_DIRS = [
 ]
 
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
-        # ManifestStaticFilesStorage добавляет уникальный MD5-хеш к именам файлов (например, style.css -> style.551e1224.css).
-        # Это гарантирует, что браузеры пользователей мгновенно загрузят новые версии файлов после деплоя,
-        # полностью решая проблему инвалидации кэша (кэш-бастинг).
         "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
-    }
+    },
 }
-
-# STORAGES = {
-#     "default": {
-#         "BACKEND": "django.core.files.storage.FileSystemStorage",
-#     },
-#     "staticfiles": {
-#         "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
-#     },
-# }
 
 
 # Настройка логирования
