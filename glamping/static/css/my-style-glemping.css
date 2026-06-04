@@ -4,13 +4,36 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #faf8f7;
+    height: 100%;
+    background: transparent; /* ВАЖНО */
+    /*background-color: #faf8f7;*/
+    /*background-image: url('../img/background-img/glemp_bez_lestnici.jpeg');*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+}
+
+.home-bg {
+    position: fixed;
+    inset: 0;
     background-image: url('../img/background-img/glemp_bez_lestnici.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+
+    z-index: 0;
+
+    transform: translateZ(0); /* iOS GPU fix */
+    -webkit-transform: translateZ(0);
 }
+
+/*.home-overlay {*/
+/*    position: fixed;*/
+/*    inset: 0;*/
+/*    background: rgba(0, 0, 0, 0.25);*/
+/*    z-index: 1;*/
+/*}*/
 
 * {
     font-family: 'Roboto', sans-serif;
@@ -526,8 +549,8 @@ button {
 
 .second-section .fixed-container {
     background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     padding: 20px; /* немного уменьшили для маленьких экранов */
@@ -648,8 +671,8 @@ button {
 
 .third-section .fixed-container {
     background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     padding: 20px;
@@ -769,6 +792,8 @@ button {
    ========================================================= */
 
 .price-info {
+    position: relative;
+    z-index: 1;
     /* Создает плавный переход цвета под углом 135 градусов от синего к светло-синему */
     background: linear-gradient(135deg, #3d52fe, #5b6cff);
     /* Устанавливает белый цвет текста для хорошего контраста с темным фоном */

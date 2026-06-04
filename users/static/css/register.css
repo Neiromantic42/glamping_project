@@ -37,7 +37,7 @@ body {
     height: 100%;
 
     /* iOS FIX: используем абсолютное позиционирование вместо fixed attachment */
-    background-image: url('../img/background-img/glemping.jpg');
+    background-image: url('../img/background-img/glemp_bez_lestnici.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -75,12 +75,19 @@ body {
    Карточка формы (glassmorphism)
    ========================================================= */
 .register-card {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    /* фон карточки с лёгкой прозрачностью (чем меньше значение, тем сильнее видно задний фон) */
+    background: rgba(255, 255, 255, 0.08);
+    /* размытие фона под карточкой (основной эффект "glass / frosted glass") */
+    backdrop-filter: blur(3px);
+    /* поддержка размытия для Safari / iOS (WebKit движок) */
+    -webkit-backdrop-filter: blur(3px);
+    /* рамка карточки (визуально отделяет стекло от фона, но при высоком alpha может "мутнить") */
     border: 1px solid rgba(255, 255, 255, 0.25);
+    /* скругление углов карточки */
     border-radius: 24px;
+    /* внутренние отступы (пространство между краем карточки и контентом) */
     padding: 40px 32px;
+    /* тень под карточкой (создаёт глубину и отделяет от фона) */
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
@@ -273,8 +280,16 @@ body {
 
     /* Фикс фона для iOS */
     .register-bg {
-        position: absolute;
+        /* фиксируем фон относительно окна браузера:
+        теперь он НЕ участвует в скролле и всегда остаётся на экране */
+        position: fixed;
+        /* минимальная высота экрана:
+        помогает на мобильных браузерах, где 100vh может “прыгать” при адресной строке */
         min-height: 100vh;
+        /* shorthand:
+       top: 0; right: 0; bottom: 0; left: 0;
+       растягивает фон ровно на весь экран */
+        inset: 0;
     }
 }
 

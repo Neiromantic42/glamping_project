@@ -37,7 +37,7 @@ body {
     height: 100%;
 
     /* iOS FIX: используем абсолютное позиционирование вместо fixed attachment */
-    background-image: url('../img/background-img/glemping.jpg');
+    background-image: url('../img/background-img/glemp_bez_lestnici.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -75,12 +75,19 @@ body {
    Карточка формы (glassmorphism)
    ========================================================= */
 .login-card {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    /* фон карточки с лёгкой прозрачностью (чем меньше значение, тем больше видно фон) */
+    background: rgba(255, 255, 255, 0.08);
+    /* размытие заднего фона под карточкой (основной эффект "стекла") */
+    backdrop-filter: blur(5px);
+    /* поддержка blur для Safari / iPhone (обязательно для iOS) */
+    -webkit-backdrop-filter: blur(5px);
+    /* рамка стекла (создаёт эффект границы, но может "мутнить" при высоком alpha) */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* скругление углов карточки */
     border-radius: 24px;
+    /* внутренние отступы (пространство между краем и контентом) */
     padding: 40px 32px;
+    /* тень под карточкой (отделяет от фона и добавляет глубину) */
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
@@ -319,11 +326,11 @@ body {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* Фикс фона для iOS */
-    .login-bg {
-        position: absolute;
-        min-height: 100vh;
-    }
+    /*!* Фикс фона для iOS *!*/
+    /*.login-bg {*/
+    /*    position: absolute;*/
+    /*    min-height: 100vh;*/
+    /*}*/
 }
 
 /* =========================================================

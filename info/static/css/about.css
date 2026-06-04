@@ -31,7 +31,8 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    background-color: #faf8f7;
+    /*background-color: #faf8f7;*/
+    background-color: transparent;
 
     /* iOS FIX: предотвращение зума и артефактов */
     min-height: -webkit-fill-available;
@@ -81,17 +82,17 @@ a {
     pointer-events: none;
 }
 
-/* iOS специфичные фиксы (только для Safari) */
-@supports (-webkit-touch-callout: none) {
-    body {
-        min-height: -webkit-fill-available;
-    }
+/*!* iOS специфичные фиксы (только для Safari) *!*/
+/*@supports (-webkit-touch-callout: none) {*/
+/*    body {*/
+/*        min-height: -webkit-fill-available;*/
+/*    }*/
 
-    .bg-fixed {
-        position: absolute;
-        min-height: 100vh;
-    }
-}
+/*    .bg-fixed {*/
+/*        position: absolute;*/
+/*        min-height: 100vh;*/
+/*    }*/
+/*}*/
 
 /* ═══════════════════════════════════════════════════════════════════════
    3. МАКЕТ СТРАНИЦЫ — Контейнер и основные секции
@@ -165,8 +166,8 @@ a {
 
 .about-card {
     background: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 24px;
     padding: 48px 40px;
