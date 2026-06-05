@@ -35,18 +35,22 @@ DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",") if os.getenv("ALLOWED_HOSTS") else []
 
 # Настройка ALLOWED_HOSTS для продакшен версии
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
-
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
+# Настройка ALLOWED_HOSTS для продакшен версии c фиксом для гугл консоли
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "kama-glamping.ru,www.kama-glamping.ru").split(",")
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8080",
-    "http://localhost:8080",
-    "http://kama-glamping.ru",
-    "http://www.kama-glamping.ru",
     "https://kama-glamping.ru",
     "https://www.kama-glamping.ru",
 ]
+
+SITE_URL = "https://kama-glamping.ru"
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+SECURE_SSL_REDIRECT = False
 
 # Application definition
 

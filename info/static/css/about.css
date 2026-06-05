@@ -82,17 +82,6 @@ a {
     pointer-events: none;
 }
 
-/*!* iOS специфичные фиксы (только для Safari) *!*/
-/*@supports (-webkit-touch-callout: none) {*/
-/*    body {*/
-/*        min-height: -webkit-fill-available;*/
-/*    }*/
-
-/*    .bg-fixed {*/
-/*        position: absolute;*/
-/*        min-height: 100vh;*/
-/*    }*/
-/*}*/
 
 /* ═══════════════════════════════════════════════════════════════════════
    3. МАКЕТ СТРАНИЦЫ — Контейнер и основные секции
