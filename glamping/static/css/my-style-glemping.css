@@ -517,6 +517,82 @@ section {
 }
 
 /* =========================================================
+   🎬 КНОПКА КИНОТЕАТРА
+   = map-button (стиль) + booking (отступы)
+   ========================================================= */
+
+.hero-cinema-button {
+    display: inline-block;
+
+    /* 📏 как у map-button */
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    color: #fff;
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    /* 🌈 ТОЧНО тот же градиент */
+    background: linear-gradient(
+        270deg,
+        #00c6ff,
+        #0072ff,
+        #00ffb3,
+        #00c6ff
+    );
+
+    background-size: 300% 300%;
+
+    /* 🎞 анимация */
+    animation: gradientMove 6s ease infinite;
+
+    /* 💡 свечение */
+    box-shadow: 0 0 10px rgba(0, 150, 255, 0.4);
+
+    /* 🎯 плавность */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    /* 📐 ОТСТУПЫ как у booking */
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+   ✨ АНИМАЦИЯ ГРАДИЕНТА (та же)
+   ========================================================= */
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =========================================================
+   🖱 HOVER (как у map-button)
+   ========================================================= */
+
+.hero-cinema-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.7);
+}
+
+/* =========================================================
+   👆 ACTIVE (нажатие)
+   ========================================================= */
+
+.hero-cinema-button:active {
+    transform: scale(0.97);
+}
+
+/* =========================================================
    Кнопки
    ========================================================= */
 button {

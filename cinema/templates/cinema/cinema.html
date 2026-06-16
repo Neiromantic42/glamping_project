@@ -1,0 +1,397 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Кинотеатр — /\ Кама ГЛ</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS страницы кинотеатра -->
+    <link rel="stylesheet" href="{% static 'css/cinema.css' %}">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         ФИКСИРОВАННЫЙ ФОН (iOS FIX - без background-attachment)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="bg-cinema"></div>
+    <div class="overlay-cinema"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         ОСНОВНАЯ СТРАНИЦА
+         ═══════════════════════════════════════════════════════ -->
+    <main class="cinema-main">
+
+        <!-- ─────────────────────────────────────────────────
+             ШАПКА — Навигация + Заголовок
+             ───────────────────────────────────────────────── -->
+        <header class="cinema-header">
+            <a href="{% url 'glamping:home_page' %}" class="btn-back-cinema">
+                ← На главную
+            </a>
+            <div class="header-content">
+                <h1 class="cinema-title">🎬 Кинотеатр</h1>
+                <p class="cinema-subtitle">Премиум кино на свежем воздухе</p>
+            </div>
+        </header>
+
+        <!-- ═══════════════════════════════════════════════════════
+             СЕКЦИЯ 1: ОПИСАНИЕ КИНОТЕАТРА
+             ═══════════════════════════════════════════════════════ -->
+        <section class="cinema-section intro-section">
+            <div class="cinema-card">
+                <h2 class="section-title">✨ Добро пожаловать в наш кинотеатр!</h2>
+
+                <p>
+                    Представляем уникальный формат развлечений — премиум кинотеатр под открытым небом прямо в нашем глемпинге.
+                    <strong>Это встроенная услуга, входящая в стоимость вашего проживания</strong> — совершенно <strong>бесплатно</strong>!
+                </p>
+
+                <!-- Особенности кинотеатра -->
+                <div class="features-showcase">
+                    <div class="feature-card">
+                        <div class="feature-icon">🖥️</div>
+                        <div class="feature-text">
+                            <h3>Огромный экран</h3>
+                            <p>3 метра по диагонали — как в настоящем кинотеатре</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🛋️</div>
+                        <div class="feature-text">
+                            <h3>Комфортные кресла</h3>
+                            <p>Удобные места с подушками для максимума уюта</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🌳</div>
+                        <div class="feature-text">
+                            <h3>Свежий воздух</h3>
+                            <p>Киносеансы в уютной зоне глэмпинга с атмосферой отдыха и природы</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎥</div>
+                        <div class="feature-text">
+                            <h3>Атмосферное звучание</h3>
+                            <p>Звук из проекционной системы для комфортного просмотра фильмов</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🍿</div>
+                        <div class="feature-text">
+                            <h3>Лаунж атмосфера</h3>
+                            <p>Приносите закуски и напитки, наслаждайтесь кино</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💑</div>
+                        <div class="feature-text">
+                            <h3>Идеально для двоих</h3>
+                            <p>Романтический вечер в саду под звездами с атмосферой большого кино!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-cinema">
+                    <p>
+                        💎 <strong>Смотрите то, что вам нравится:</strong> фантастические эпосы, романтические истории,
+                        документальные фильмы или любимые сериалы — всё на экране размером с кинотеатр, но с ощущением свежего воздуха
+                        и природы вокруг вас. Это совершенно новый опыт просмотра кино!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════
+             СЕКЦИЯ 2: БЕСПЛАТНАЯ МЕДИАТЕКА Ivi
+             ═══════════════════════════════════════════════════════ -->
+        <section class="cinema-section free-section">
+            <div class="cinema-card free-card">
+                <h2 class="section-title">🎭 Медиатека Ivi (Бесплатно)</h2>
+
+                <p>
+                    В нашем кинотеатре установлена система с доступом к полной медиатеке сервиса <strong>Ivi</strong>.
+                    Вы самостоятельно выбираете, что смотреть, и управляете просмотром прямо с пульта — как на телевизоре дома,
+                    но на экране размером с кинотеатр!
+                </p>
+
+                <div class="content-grid">
+                    <div class="grid-item">
+                        <h3>📺 Что доступно?</h3>
+                        <ul>
+                            <li>🎬 Более 10,000 фильмов</li>
+                            <li>📺 Популярные сериалы</li>
+                            <li>🎭 Документальные фильмы</li>
+                            <li>🎪 Комедии и развлечения</li>
+                            <li>🌍 Фильмы со всего мира</li>
+                            <li>🆕 Новые релизы</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item">
+                        <h3>🎯 Как это работает?</h3>
+                        <ul>
+                            <li>✅ Просмотр включен в проживание</li>
+                            <li>✅ Управление с пульта проектора</li>
+                            <li>✅ Выберите фильм и начните смотреть</li>
+                            <li>✅ Пауза, перемотка, громкость</li>
+                            <li>✅ Смотрите столько, сколько хотите</li>
+                            <li>✅ 24/7 доступ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p>
+                        💡 <strong>Совет:</strong> Романтический фильм под звёздами, ужин на террасе и шум реки Кама
+                        в фоне — идеальный вечер для пары!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════
+             СЕКЦИЯ 3: ПЛАТНАЯ УСЛУГА (Заказной сеанс)
+             ═══════════════════════════════════════════════════════ -->
+        {% if cinema_booking_enabled %}
+        <section class="cinema-section premium-section">
+            <div class="cinema-card premium-card">
+                <h2 class="section-title">👑 Заказной сеанс (Премиум услуга)</h2>
+
+                <p>
+                    Хотите посмотреть конкретный фильм, который нет в медиатеке Ivi?
+                    Без проблем! Заказывайте любой фильм, который уже вышел в цифре,
+                    и мы организуем для вас <strong>персональный сеанс</strong>.
+                </p>
+
+                <div class="pricing-box">
+                    <div class="price-tag">
+                        <span class="price-value">2 000</span>
+                        <span class="price-currency">₽</span>
+                        <span class="price-period">за сеанс</span>
+                    </div>
+                    <p class="price-description">
+                        Любой фильм на выбор • Время по вашему согласованию •
+                        На том же экране с лучшим звуком
+                    </p>
+                </div>
+
+                <div class="booking-form-wrapper">
+                    <h3>
+                        📋 Заказать и оплатить сеанс<br><br>
+                        <strong>Перевод указанной суммы по номеру телефона: +7 (917) 852-16-35<br></strong>
+                        Банк получателя: МТС Деньги<br>
+                        Получатель: Алексей С.
+
+                    </h3>
+
+                    <form method="POST" action="{% url 'cinema:book_session' %}" class="booking-form" id="cinemaBookingForm">
+                        {% csrf_token %}
+
+                        <!-- Имя клиента -->
+                        <div class="form-group">
+                            <label for="name">Ваше имя *</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Азат или Анна"
+                                required
+                                maxlength="100"
+                            >
+                        </div>
+
+                        <!-- Телефон -->
+                        <div class="form-group">
+                            <label for="phone">Телефон *</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="+7 (999) 123-45-67"
+                                required
+                                maxlength="20"
+                            >
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email (опционально)</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="your@email.com"
+                                maxlength="100"
+                            >
+                        </div>
+
+                        <!-- Название фильма -->
+                        <div class="form-group">
+                            <label for="movie_name">Название фильма *</label>
+                            <input
+                                type="text"
+                                id="movie_name"
+                                name="movie_name"
+                                placeholder="Например: «Интерстеллар» или «Дюна»"
+                                required
+                                maxlength="200"
+                            >
+                        </div>
+
+                        <!-- Дата и время -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="session_date">Дата сеанса *</label>
+                                <input
+                                    type="date"
+                                    id="session_date"
+                                    name="session_date"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="session_time">Время начала *</label>
+                                <input
+                                    type="time"
+                                    id="session_time"
+                                    name="session_time"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Комментарий (пожелания) -->
+                        <div class="form-group">
+                            <label for="comments">Ваши пожелания и комментарии *</label>
+                            <textarea
+                                id="comments"
+                                name="comments"
+                                placeholder="Расскажите нам подробнее о вашем любимом фильме, почему вы его хотите посмотреть, есть ли у вас пожелания по времени или другим деталям сеанса..."
+                                required
+                                maxlength="2000"
+                                rows="6"
+                            ></textarea>
+                            <p class="char-counter"><span id="charCount">0</span>/2000</p>
+                        </div>
+
+                        <!-- Согласие на обработку данных -->
+                        <div class="form-group checkbox-group">
+                            <input
+                                type="checkbox"
+                                id="agree"
+                                name="agree"
+                                required
+                            >
+                            <label for="agree">
+                                Я согласен на обработку моих данных и получение уведомлений о статусе заказа
+                            </label>
+                        </div>
+
+                        <!-- Кнопка отправки -->
+                        <button type="submit" class="btn-submit-booking">
+                            Зарезервировать сеанс →
+                        </button>
+                    </form>
+
+                    <p class="form-note">
+                        * Поля обязательны. В скором времени мы свяжемся с вами для подтверждения заказа.
+                    </p>
+                </div>
+
+                <div class="info-box premium-info">
+                    <p>
+                        🎬 <strong>Популярные выборы:</strong> Фантастические фильмы (Интерстеллар, Дюна),
+                        романтические истории (Titanic, Pride and Prejudice), боевики (Top Gun), документалистика
+                        (Planet Earth, Life). Но вы можете выбрать любой фильм!
+                    </p>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- ═══════════════════════════════════════════════════════
+             СЕКЦИЯ 4: ПОЧЕМУ ЭТО КЛАССНО
+             ═══════════════════════════════════════════════════════ -->
+        <section class="cinema-section why-section">
+            <div class="cinema-card why-card">
+                <h2 class="section-title">🌟 Почему это так классно?</h2>
+
+                <div class="why-grid">
+                    <div class="why-item">
+                        <div class="why-number">1</div>
+                        <h3>Новый опыт кино</h3>
+                        <p>Никогда не смотрели фильмы на экране размером с кинотеатр на свежем воздухе? Это совершенно иное ощущение!</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-number">2</div>
+                        <h3>Романтика и уют</h3>
+                        <p>Тесная близость, звёзды над головой, шум реки — идеальный сценарий для незабываемого вечера</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-number">3</div>
+                        <h3>Избегайте скучного отдыха</h3>
+                        <p>Вместо однообразной программы — активный выбор контента, который вам действительно интересен</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-number">4</div>
+                        <h3>Для всей семьи</h3>
+                        <p>Даже если вы приехали с детьми, всегда найдется фильм, который понравится всем</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-number">5</div>
+                        <h3>Входит в проживание</h3>
+                        <p>Это не дополнительная плата (за исключением премиум сеансов) — просто бонус вашего отдыха</p>
+                    </div>
+
+                    <div class="why-item">
+                        <div class="why-number">6</div>
+                        <h3>Создавайте воспоминания</h3>
+                        <p>Это будет тем, о чём вы вспомните и расскажете друзьям с улыбкой через годы</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════
+             ПРИЗЫВ К ДЕЙСТВИЮ
+             ═══════════════════════════════════════════════════════ -->
+        <section class="cinema-section cta-section">
+            <div class="cinema-card cta-card">
+                <h2>Забронируйте глемпинг и насладитесь кино!</h2>
+                <a href="{% url 'bookings:booking' %}" class="btn-primary-cinema">
+                    Забронировать проживание →
+                </a>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════
+             ПОДВАЛ
+             ═══════════════════════════════════════════════════════ -->
+        <footer class="cinema-footer">
+            <a href="{% url 'glamping:home_page' %}" class="btn-back-cinema">
+                ← На главную
+            </a>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/cinema.js' %}"></script>
+
+</body>
+</html>

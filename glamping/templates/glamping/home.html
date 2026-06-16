@@ -71,7 +71,6 @@
             </a>
             <a href="{% url 'reviews:reviews' %}">Отзывы</a>
             <a href="{% url 'gallery:gallery' %}">Фото глемпинга</a>
-            {#            <a href="#facilities">Удобства</a>#}
             <a href="#contacts">Контакты</a>
         </nav>
 
@@ -114,6 +113,7 @@
         <a href="{% url 'gallery:gallery' %}">Фото глемпинга</a>
         <a href="#facilities">Удобства</a>
         <a href="#contacts">Контакты</a>
+        <a href="{% url 'cinema:cinema' %}">Кинотеатр</a>
         <a href="tel:+79178521635">{{ glamping.phone }}</a>
         <a href="{% url 'bookings:booking' %}" class="booking-button">
             Забронировать
@@ -144,7 +144,10 @@
         <p class="hero-address">
             {{ glamping.address }}
         </p>
-
+        <!-- ⬇️  КНОПКА КИНОТЕАТРА -->
+        <a href="{% url 'cinema:cinema' %}" class="hero-cinema-button">
+            Кинотеатр - подробнее
+        </a>
         <!-- Мини-преимущества / теги -->
         <div class="hero-tags">
             <span>📍 400 м до Камы</span>

@@ -41,6 +41,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')), # подключаем все пути приложения профиля
     path('reviews/', include('reviews.urls')), # подключаем все пути приложения отзывов
     path('about/', include('info.urls')), # подключаем все пути приложения "о нас" это страница
+    path('cinema/', include('cinema.urls')), # Все пути приложения cinema
 ]
 
 urlpatterns += [
