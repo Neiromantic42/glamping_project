@@ -18,6 +18,7 @@ class StaticViewSitemap(Sitemap):
             ("bookings:booking", {}),
             ("reviews:reviews", {}),
             ("info:about", {}),
+            ("cinema:cinema", {}),
         ]
 
     def location(self, item):
@@ -28,4 +29,6 @@ class StaticViewSitemap(Sitemap):
             return 1.0
         if item[0] == "info:about":
             return 0.6
+        if item[0] == "cinema:cinema":
+            return 0.85
         return 0.8
