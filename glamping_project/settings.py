@@ -20,25 +20,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY") # Настройка получения секретного ключа для продакшена
+# SECRET_KEY = os.getenv("SECRET_KEY") # Настройка получения секретного ключа для продакшена
 
 # Настройка получения секретного ключа для локальной разработки
-# SECRET_KEY = "django-insecure-#jagw_s8mzh%@%%-&l+5_rw=i*7k9u&3ui9lv@53g34vqw^d&*"
+SECRET_KEY = "django-insecure-#jagw_s8mzh%@%%-&l+5_rw=i*7k9u&3ui9lv@53g34vqw^d&*"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Настройка дебак в продакшен
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
-# DEBUG = True # Настройка дебаг для локальной разработки
+# DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = True # Настройка дебаг для локальной разработки
 
 # Настройка ALLOWED_HOSTS для локальной разработки
-# ALLOWED_HOSTS = ["*"] # только для локальной разработки
+ALLOWED_HOSTS = ["*"] # только для локальной разработки
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",") if os.getenv("ALLOWED_HOSTS") else []
 
 # Настройка ALLOWED_HOSTS для продакшен версии
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 # Настройка ALLOWED_HOSTS для продакшен версии c фиксом для гугл консоли
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "kama-glamping.ru,www.kama-glamping.ru").split(",")
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "kama-glamping.ru,www.kama-glamping.ru").split(",")
 
 
 CSRF_TRUSTED_ORIGINS = [
@@ -218,5 +218,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # ═══════════════════════════════════════════════════════════
 
 # Включить/отключить платную услугу заказного сеанса
-CINEMA_BOOKING_ENABLED = True  # Поменяй на False, чтобы скрыть форму заказа
+CINEMA_BOOKING_ENABLED = False  # Поменяй на False, чтобы скрыть форму заказа
 
