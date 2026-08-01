@@ -38,7 +38,7 @@ DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 # Настройка ALLOWED_HOSTS для продакшен версии c фиксом для гугл консоли
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "kama-glamping.ru,www.kama-glamping.ru").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "kama-glamping.ru,www.kama-glamping.ru").split(",") # Предпочтительный вариант!
 
 
 CSRF_TRUSTED_ORIGINS = [

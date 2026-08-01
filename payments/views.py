@@ -20,15 +20,26 @@ def payment(request, booking_id: int):
     booking = get_object_or_404(Booking, id=booking_id)
     glamping = get_object_or_404(Glamping, id=1)
     nights = (booking.check_out_date - booking.check_in_date).days
-    extra_guests_count = (booking.guests_count - 2)
-    guest_fee = extra_guests_count * glamping.extra_guest_price
 
-    if booking.guests_count <=2:
-        total_price = nights * glamping.price_per_night
-        prepayment = total_price * Decimal(0.5)
+    # определяем тариф
+    if nights == 1:
+        price_per_night = glamping.single_night_price
+        extra_guest_price = glamping.single_night_extra_guest_price
+        actual_extra_guest_price = glamping.single_night_extra_guest_price
     else:
-        total_price = (nights * glamping.price_per_night) + ((booking.guests_count - 2) * glamping.extra_guest_price)
-        prepayment = total_price * Decimal(0.5)
+        price_per_night = glamping.price_per_night
+        extra_guest_price = glamping.extra_guest_price
+        actual_extra_guest_price = glamping.extra_guest_price
+
+    # доп гости
+    extra_guests_count = max(0, booking.guests_count - 2)
+
+    # доплата за гостей (ВАЖНО: умножаем на nights)
+    guest_fee = extra_guests_count * extra_guest_price * nights
+
+    # итог
+    total_price = (nights * price_per_night) + guest_fee
+    prepayment = total_price * Decimal("0.5")
 
     if request.method == 'POST':
         # Пользователь нажал "Я оплатил"
@@ -65,7 +76,7 @@ def payment(request, booking_id: int):
             'check_out': booking.check_out_date,
             'guests_count': booking.guests_count,
             'extra_guests_count': extra_guests_count,
-            'extra_guest_price': glamping.extra_guest_price,
+            'extra_guest_price': actual_extra_guest_price, # всегда актуальная стоимость доп платы за гостя
             'guest_fee': guest_fee,
             'nights': nights,
             'total_price': total_price,

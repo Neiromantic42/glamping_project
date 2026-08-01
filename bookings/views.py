@@ -42,9 +42,14 @@ def booking(request: HttpRequest) -> HttpResponse:
         form = BookingForm()
         glamping = get_object_or_404(Glamping, id=1)
         additional_price = glamping.extra_guest_price
+        single_night_extra_guest_price = glamping.single_night_extra_guest_price
 
         return render(request, 'bookings/booking.html',
-                      {"form": form, "extra_guest_price": additional_price}
+                      {
+                          "form": form,
+                          "extra_guest_price": additional_price,
+                          "single_night_extra_guest_price": single_night_extra_guest_price,
+                      }
                       )
 
 

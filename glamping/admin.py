@@ -9,7 +9,8 @@ class GlampingAdmin(admin.ModelAdmin):  # Создаем класс настро
     list_display = (
         "title",           # Название глэмпинга
         "location",        # Локация (район/регион)
-        "price_per_night", # Цена за ночь
+        "price_per_night", # Цена за 1 ночь при аренде от 2х суток
+        "single_night_price", # Цена за 1 ночь
         "max_guests",      # Максимальное количество гостей
     )
 
@@ -30,7 +31,13 @@ class GlampingAdmin(admin.ModelAdmin):  # Создаем класс настро
             "fields": ("location", "address")
         }),
         ("Цены", {  # Блок для финансовых настроек
-            "fields": ("price_per_night", "deposit", "extra_guest_price")
+            "fields": (
+                "price_per_night",
+                "deposit",
+                "extra_guest_price",
+                "single_night_price",
+                "single_night_extra_guest_price",
+            )
         }),
         ("Проживание", {  # Блок настроек заезда и вместимости
             "fields": ("check_in_time", "check_out_time", "max_guests")
