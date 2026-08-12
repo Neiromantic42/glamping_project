@@ -1,10 +1,14 @@
 import logging
+
 from .models import Booking
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from bookings.forms import BookingForm
 from bookings.services.booking_service import is_dates_available, create_booking
 from glamping.models import Glamping
+
+from .services.notification_service import notify_owner_new_booking
+from .services.priceing_service import calculate_the_booking_cost
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +33,22 @@ def booking(request: HttpRequest) -> HttpResponse:
             # если пересечений дат нет, создаем запись бронирования
             if is_available:
                 booking = create_booking(form=form, glamping=glamping)
+
+                # Вызываем фун-ю рассчета стоимости бронирования из сервисного слоя
+                cost = calculate_the_booking_cost(
+                    booking=booking,
+                    glamping=glamping
+                )
+                try:
+                    notify_owner_new_booking(
+                        booking=booking,
+                        cost = cost,
+                    )
+                except Exception as e:
+                    logger.error(f"Ошибка отправки email владельцу: {e}")
+
                 return redirect('payment:payment_page', booking_id=booking.pk)
+
             form.add_error(None, "Эти даты уже заняты")
             return render(request, "bookings/booking.html", {"form": form})
 

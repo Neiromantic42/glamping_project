@@ -34,9 +34,9 @@ def create_booking(form, glamping):
     # Сохраняем уже полностью заполненный объект в базу данных
     booking.save()
     # Возвращаем созданный объект бронирования для дальнейшего использования (например, оплаты)
-    try: # Отправляем сообщение на почту арендодателю о попытке бронирования
-        notify_owner_new_booking(booking)
-    except Exception as e:
-        logger.error(f"Ошибка отправки email владельцу: {e}")
+    # try: # Отправляем сообщение на почту арендодателю о попытке бронирования
+    #     notify_owner_new_booking(booking)
+    # except Exception as e:
+    #     logger.error(f"Ошибка отправки email владельцу: {e}")
     return booking
 

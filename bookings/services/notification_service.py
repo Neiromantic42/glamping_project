@@ -8,7 +8,8 @@ STATUS_RU = {
 }
 
 
-def notify_owner_new_booking(booking):
+
+def notify_owner_new_booking(booking, cost):
     """
     Уведомление владельца о новой заявке на бронирование
     """
@@ -26,12 +27,19 @@ def notify_owner_new_booking(booking):
         
         Заезд: {booking.check_in_date}
         Выезд: {booking.check_out_date}
+        Ночей: {cost["nights"]}
         
         Гостей: {booking.guests_count}
+        Кол-во дополнительно оплачиваемых гостей: {cost["extra_guests_count"]}
+        Стоимость дополнительно оплачиваемых гостей: {cost["guest_fee"]} руб.
         
-        Статус: {STATUS_RU.get(booking.status, booking.status)}
+        Общая стоимость: {cost["total_price"]}
+        Предоплата: {cost["prepayment"]} руб.
+        Остаток после предоплаты: {cost["remainder"]} руб.
         
-        Открыть в админке:
+        Текущий статус бронирования: {STATUS_RU.get(booking.status, booking.status)}
+        
+        Открыть бронь в админке:
         {admin_url}
     """
 
