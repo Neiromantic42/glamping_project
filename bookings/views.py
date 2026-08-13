@@ -7,7 +7,7 @@ from bookings.forms import BookingForm
 from bookings.services.booking_service import is_dates_available, create_booking
 from glamping.models import Glamping
 
-from .services.notification_service import notify_owner_new_booking
+from .services.notification_service import notify_owner_new_booking, notify_the_guest_about_the_booking
 from .services.priceing_service import calculate_the_booking_cost
 
 logger = logging.getLogger(__name__)
@@ -34,11 +34,12 @@ def booking(request: HttpRequest) -> HttpResponse:
             if is_available:
                 booking = create_booking(form=form, glamping=glamping)
 
-                # Вызываем фун-ю рассчета стоимости бронирования из сервисного слоя
+                # Вызываем фун-ю расчета стоимости бронирования из сервисного слоя
                 cost = calculate_the_booking_cost(
                     booking=booking,
                     glamping=glamping
                 )
+                # Блок для безопасно отправки письма хосту
                 try:
                     notify_owner_new_booking(
                         booking=booking,
@@ -46,6 +47,14 @@ def booking(request: HttpRequest) -> HttpResponse:
                     )
                 except Exception as e:
                     logger.error(f"Ошибка отправки email владельцу: {e}")
+                # Блок для безопасно отправки письма гостю
+                try:
+                    notify_the_guest_about_the_booking(
+                        booking=booking,
+                        cost=cost
+                    )
+                except Exception as e:
+                    logger.error(f"Ошибка отправки email гостю: {e}")
 
                 return redirect('payment:payment_page', booking_id=booking.pk)
 
